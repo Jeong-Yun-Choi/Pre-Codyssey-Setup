@@ -50,21 +50,21 @@
 - Git Version : 2.53.0
 
 ## 2) 수행 항목 체크리스트
-[ ] 터미널
+- [ ] 터미널
 
-[ ] 권한
+- [ ] 권한
 
-[ ] Docker
+- [ ] Docker
 
-[ ] Dockerfile
+- [ ] Dockerfile
 
-[ ] 포트
+- [ ] 포트
 
-[ ] 볼륨
+- [ ] 볼륨
 
-[ ] Git
+- [ ] Git
 
-[ ] GitHub
+- [ ] GitHub
 
 ## 3) 터미널 조작
 ## 4) 권한 실습
