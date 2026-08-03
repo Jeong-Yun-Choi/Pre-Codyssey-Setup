@@ -64,14 +64,20 @@
 
 - [ ] 볼륨
 
-- [ ] Git
+- [X] Git
 
 - [X] GitHub
 
 ## 3) 터미널 조작 및 권한 실습
 ### 3-1) 터미널 조작
+**[현재 위치를 확인하는 명령어]**
+```zsh
+pwd
 ```
-
+**[수행 로그]**
+```zsh
+jeongyun.choi****** ~ % pwd
+/Users/jeongyun.choi******
 ```
 ### 3-2) 권한 실습
 ## 4) Docker 실습
