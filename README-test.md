@@ -20,7 +20,7 @@
 
 [3) 터미널 조작 및 권한 실습](#3-터미널-조작-및-권한-실습)
 
-[4) Docker 컨테이너 실행 실습](#4-docker-컨테이너-실행-실습)
+[4) Docker 실습](#4-docker-실습)
 
 [4-1) Docker 설치 및 기본 점검](#4-1-docker-설치-및-기본-점검)
 
@@ -35,6 +35,8 @@
 [4-6) Docker 볼륨 영속성 검증](#4-6-docker-볼륨-영속성-검증)
 
 [5) Git 설정 및 GitHub 연동](#5-git-설정-및-github-연동)
+
+[6) 트러블슈팅](#6-트러블슈팅)
 
 ## 1) 실행환경
 - OS :  macOS 15.7.4
@@ -65,7 +67,7 @@
 ## 3) 터미널 조작 및 권한 실습
 ### 3-1) 터미널 조작
 ### 3-2) 권한 실습
-## 4) Docker 컨테이너 실행 실습
+## 4) Docker 실습
 ### 4-1) Docker 설치 및 기본 점검
 ### 4-2) Docker 기본 운영 명령 수행
 ### 4-3) 컨테이너 실행 실습
@@ -149,3 +151,7 @@ branch.main.remote=origin
 branch.main.merge=refs/heads/main
 branch.main.vscode-merge-base=origin/main
 ```
+### 5-6) VScode와 GitHub 계정 연동하기
+<img src="./screenshot/github_vscode_connect.png", height="400x", width="100x">
+
+## 6) 트러블슈팅
