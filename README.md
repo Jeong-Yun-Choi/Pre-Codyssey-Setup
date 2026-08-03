@@ -38,14 +38,18 @@
 
 [6) 트러블슈팅](#6-트러블슈팅)
 
-## 1) 실행환경
-- OS :  macOS 15.7.4
+[7) 검증방법](#7-검증방법)
 
-- SHELL : zsh 5.9 x86_64
+## 1) [실행환경](#실행환경-검증)
+- **OS :  macOS 15.7.7**
 
-- Docker version : 28.5.2 build ecc6942
+- **SHELL : zsh 5.9 x86_64**
 
-- Git Version : 2.53.0
+- **Terminal : Apple_Terminal 455.1**
+
+- **Docker : 28.5.2 build ecc6942**
+
+- **Git : 2.53.0**
 
 ## 2) 수행 항목 체크리스트
 - [ ] 터미널
@@ -62,10 +66,13 @@
 
 - [ ] Git
 
-- [ ] GitHub
+- [X] GitHub
 
 ## 3) 터미널 조작 및 권한 실습
 ### 3-1) 터미널 조작
+```
+
+```
 ### 3-2) 권한 실습
 ## 4) Docker 실습
 ### 4-1) Docker 설치 및 기본 점검
@@ -76,18 +83,22 @@
 ### 4-6) Docker 볼륨 영속성 검증
 ## 5) Git 설정 및 GitHub 연동
 ### 5-1) GitHub 계정 연동하기
+[계정 연동 시 사용되는 명령어]
 ```
 git config --global user.email "이메일주소"
 git config --global user.name "사용자이름(username)"
 ```
+[수행 로그]
 ```
 jeongyun.choi******** ~ % git config --global user.name "Jeong-Yun-Choi" # GitHub 가입 시 사용한 사용자이름(username)
 jeongyun.choi******** ~ % git config --global user.email "******@******" # GitHub 가입 시 사용한 이메일 주소
 ```
 ### 5-2) 기본 브랜치 설정하기
+**[기본 브랜치 설정 시 사용되는 명령어]**
 ```
 git config --golbal init.defultbranch main
 ```
+**[수행 로그]**
 ```
 jeongyun.choi******* projects % git config --global init.defultbranch
 main
@@ -100,9 +111,11 @@ jeongyun.choi********~ % pwd # 현재 위치 확인
 jeongyun.choi ~ % cd projects # 로컬저장소로 사용할 디렉토리로 이동
 jeongyun.choi******** projects % 
 ```
+**[Git 초기화시 사용되는 명령어]**
 ```
 git init
 ```
+**[수행 로그]**
 ```
 jeongyun.choi******** projects % git init
 hint: Using 'master' as the name for the initial branch. This default branch name
@@ -155,3 +168,73 @@ branch.main.vscode-merge-base=origin/main
 ![vscode_github_connect](/screenshot/github_vscode_connect.png)
 
 ## 6) 트러블슈팅
+
+## 7) 검증방법
+### 실행환경-검증
+**[OS를 확인하는 명령어]**
+```
+sw_vers
+```
+**[수행 로그]**
+```
+jeongyun.choi******* ~ % sw_vers
+ProductName:		macOS
+ProductVersion:		15.7.7
+BuildVersion:		24G720
+```
+
+<br>
+<br>
+
+**[SHELL의 이름과 버전을 확인하는 명령어]**
+```
+echo $SHELL # 쉘의 종류
+zsh --version # 쉘의 버전
+```
+**[수행 로그]**
+```
+jeongyun.choi****** ~ % echo $SHELL # 쉘의 종류
+/bin/zsh
+jeongyun.choi****** ~ % zsh --version # 쉘의 버전
+zsh 5.9 (x86_64-apple-darwin24.0)
+```
+<br>
+<br>
+
+**[터미널의 이름과 버전을 확인하는 명령어]**
+```
+echo $TERM_PROGRAM # 터미널명
+echo $TERM_PROGRAM_VERSION # 터미널 버전 확인
+```
+
+**[수행 로그]**
+```
+jeongyun.choi******* ~ % echo $TERM_PROGRAM
+Apple_Terminal
+jeongyun.choi*******~ % echo $TERM_PROGRAM_VERSION
+455.1
+```
+<br>
+<br>
+
+**[Docker 버전을 확인하는 명령어]**
+```
+docker --version
+```
+**[수행 로그]**
+```
+jeongyun.choi****** ~ % docker --version
+Docker version 28.5.2, build ecc6942
+```
+<br>
+<br>
+
+**[Git의 버전을 확인하는 명령어]**
+```
+git --version
+```
+**[수행 로그]**
+```
+jeongyun.choi******* projects % git --version
+git version 2.53.0
+```
