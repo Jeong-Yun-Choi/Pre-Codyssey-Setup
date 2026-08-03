@@ -152,6 +152,6 @@ branch.main.merge=refs/heads/main
 branch.main.vscode-merge-base=origin/main
 ```
 ### 5-6) VScode와 GitHub 계정 연동하기
-![vscode_github_connect](<img src="./screenshot/github_vscode_connect.png", height="400x", width="100x">)
+![vscode_github_connect](<img src= "https://github.com/Jeong-Yun-Choi/Pre-Codyssey-Setup-Test/blob/main/screenshot/github_vscode_connect.png", height="400x", width="100x">)
 
 ## 6) 트러블슈팅
