@@ -60,7 +60,7 @@
 
 - [ ] Git
 
-- [X] GitHub
+- [ ] GitHub
 
 ## 3) 터미널 조작 및 권한 실습
 ### 3-1) 터미널 조작
@@ -73,3 +73,79 @@
 ### 4-5) 포트 매핑 및 접속
 ### 4-6) Docker 볼륨 영속성 검증
 ## 5) Git 설정 및 GitHub 연동
+### 5-1) GitHub 계정 연동하기
+```
+git config --global user.email "이메일주소"
+git config --global user.name "사용자이름(username)"
+```
+```
+jeongyun.choi******** ~ % git config --global user.name "Jeong-Yun-Choi" # GitHub 가입 시 사용한 사용자이름(username)
+jeongyun.choi******** ~ % git config --global user.email "******@******" # GitHub 가입 시 사용한 이메일 주소
+```
+### 5-2) 기본 브랜치 설정하기
+```
+git config --golbal init.defultbranch main
+```
+```
+jeongyun.choi******* projects % git config --global init.defultbranch
+main
+```
+### 5-3) 로컬저장소에 Git 초기화하기
+```
+jeongyun.choi********~ % pwd # 현재 위치 확인
+/Users/jeongyun.choi******
+
+jeongyun.choi ~ % cd projects # 로컬저장소로 사용할 디렉토리로 이동
+jeongyun.choi******** projects % 
+```
+```
+git init
+```
+```
+jeongyun.choi******** projects % git init
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: will change to "main" in Git 3.0. To configure the initial branch name
+hint: to use in all of your new repositories, which will suppress this warning,
+hint: call:
+hint:
+hint: 	git config --global init.defaultBranch <name>
+hint:
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint:
+hint: 	git branch -m <name>
+hint:
+hint: Disable this message with "git config set advice.defaultBranchName false"
+/Users/jeongyun.choi********/projects/.git/ 안의 빈 깃 저장소를 다시 초기화했습니다
+```
+### 5-4) 로컬저장소와 원격저장소 연결하기
+```
+git remote add origin 해당 레포지토리 주소(원격저장소 주소)
+```
+```
+jeongyun.choi******** projects % git remote -v
+origin	https://github.com/Jeong-Yun-Choi/Pre-Codyssey-Setup-Test.git (fetch)
+origin	https://github.com/Jeong-Yun-Choi/Pre-Codyssey-Setup-Test.git (push)
+```
+### 5-5) 원격저장소와 로컬저장소의 연동 확인하기
+```
+git config --list
+```
+```
+jeongyun.choi******** projects % git config --list
+credential.helper=osxkeychain
+user.email=*********@*********
+user.name=Jeong-Yun-Choi
+init.defultbranch=main
+core.repositoryformatversion=0
+core.filemode=true
+core.bare=false
+core.logallrefupdates=true
+core.ignorecase=true
+core.precomposeunicode=true
+remote.origin.url=https://github.com/Jeong-Yun-Choi/Pre-Codyssey-Setup-Test.git
+remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
+branch.main.remote=origin
+branch.main.merge=refs/heads/main
+branch.main.vscode-merge-base=origin/main
+```
