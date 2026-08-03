@@ -79,6 +79,66 @@ pwd
 jeongyun.choi****** ~ % pwd
 /Users/jeongyun.choi******
 ```
+**[숨김 파일을 포함한 목록 확인하는 명령어]**
+```zsh
+ls -la
+```
+-l: 상세히 보기, -a: 숨김파일까지 모두 표시
+
+**[수행 로그]**
+```zsh
+jeongyun.choi****** ~ % ls -la
+total 64
+drwxr-x---+ 25 jeongyun.choi******  jeongyun.choi******    800  8  3 16:17 .
+drwxr-xr-x   6 root                 admin                  192  8  3 09:10 ..
+-r--------   1 jeongyun.choi******  jeongyun.choi******      8  8  3 09:10 .CFUserTextEncoding
+drwxr-xr-x   5 jeongyun.choi******  jeongyun.choi******   160  8  3 10:53 .docker
+-rw-r--r--@  1 jeongyun.choi****** jeongyun.choi******  10244  8  3 14:05 .DS_Store
+-rw-r--r--   1 jeongyun.choi******  jeongyun.choi******     91  8  3 10:11 .gitconfig
+-rw-------   1 jeongyun.choi  jeongyun.choi     20  8  3 13:22 .lesshst
+drwxr-xr-x  10 jeongyun.choi******  jeongyun.choi******    320  8  3 10:53 .orbstack
+drwxr-xr-x   3 jeongyun.choi******  jeongyun.choi******     96  8  3 10:53 .ssh
+drwx------+ 14 jeongyun.choi******  jeongyun.choi******    448  8  3 16:11 .Trash
+drwxr-xr-x   5 jeongyun.choi******  jeongyun.choi******    160  8  3 10:33 .vscode
+-rw-r--r--   1 jeongyun.choi******  jeongyun.choi******    154  8  3 10:53 .zprofile
+-rw-------   1 jeongyun.choi******  jeongyun.choi******    540  8  3 16:17 .zsh_history
+drwx------  15 jeongyun.choi******  jeongyun.choi******    480  8  3 16:17 .zsh_sessions
+drwx------+  5 jeongyun.choi******  jeongyun.choi******    160  8  3 16:11 Desktop
+drwx------+  3 jeongyun.choi******  jeongyun.choi******     96  8  3 09:10 Documents
+drwx------+  6 jeongyun.choi******  jeongyun.choi******    192  8  3 14:06 Downloads
+drwx------@ 82 jeongyun.choi******  jeongyun.choi******   2624  8  3 14:21 Library
+drwx------   3 jeongyun.choi******  jeongyun.choi******     96  8  3 09:10 Movies
+drwx------+  3 jeongyun.choi******  jeongyun.choi******     96  8  3 09:10 Music
+drwx------   4 jeongyun.choi******  jeongyun.choi******    160  8  3 10:53 OrbStack
+drwx------+  4 jeongyun.choi******  jeongyun.choi******    128  8  3 09:10 Pictures
+drwxr-xr-x   5 jeongyun.choi******  jeongyun.choi******    160  8  3 16:11 projects
+drwxr-xr-x+  4 jeongyun.choi******  jeongyun.choi******    128  8  3 09:10 Public
+drwxr-xr-x   2 jeongyun.choi******  jeongyun.choi******     64  8  3 11:52 test
+```
+**[특정한 디렉토리로 이동하는 명령어]**
+```zsh
+cd ~/경로
+```
+**[수행 로그]**
+```zsh
+jeongyun.choi****** ~ % cd projects
+jeongyun.choi****** projects % 
+```
+<br>
+<br>
+
+*파일과 디렉토리의 이름을 변경하는 명령어는 mv로 동일하다.
+
+**[파일 및 디렉토리를 이동시키는 명령어]**
+```zsh
+mv 파일명(디렉토리명).파일형식 ~/이동시킬 경로
+```
+
+**[파일 및 디렉토리의 이름을 변경하는 명령어]**
+```zsh
+mv 파일명(디렉토리명).파일형식 변경할 파일명(디렉토리명)
+```
+
 ### 3-2) 권한 실습
 ## 4) Docker 실습
 ### 4-1) Docker 설치 및 기본 점검
@@ -90,27 +150,27 @@ jeongyun.choi****** ~ % pwd
 ## 5) Git 설정 및 GitHub 연동
 ### 5-1) GitHub 계정 연동하기
 [계정 연동 시 사용되는 명령어]
-```
+```zsh
 git config --global user.email "이메일주소"
 git config --global user.name "사용자이름(username)"
 ```
 [수행 로그]
-```
+```zsh
 jeongyun.choi******** ~ % git config --global user.name "Jeong-Yun-Choi" # GitHub 가입 시 사용한 사용자이름(username)
 jeongyun.choi******** ~ % git config --global user.email "******@******" # GitHub 가입 시 사용한 이메일 주소
 ```
 ### 5-2) 기본 브랜치 설정하기
 **[기본 브랜치 설정 시 사용되는 명령어]**
-```
+```zsh
 git config --golbal init.defultbranch main
 ```
 **[수행 로그]**
-```
+```zsh
 jeongyun.choi******* projects % git config --global init.defultbranch
 main
 ```
 ### 5-3) 로컬저장소에 Git 초기화하기
-```
+```zsh
 jeongyun.choi********~ % pwd # 현재 위치 확인
 /Users/jeongyun.choi******
 
@@ -118,11 +178,11 @@ jeongyun.choi ~ % cd projects # 로컬저장소로 사용할 디렉토리로 이
 jeongyun.choi******** projects % 
 ```
 **[Git 초기화시 사용되는 명령어]**
-```
+```zsh
 git init
 ```
 **[수행 로그]**
-```
+```zsh
 jeongyun.choi******** projects % git init
 hint: Using 'master' as the name for the initial branch. This default branch name
 hint: will change to "main" in Git 3.0. To configure the initial branch name
@@ -140,19 +200,19 @@ hint: Disable this message with "git config set advice.defaultBranchName false"
 /Users/jeongyun.choi********/projects/.git/ 안의 빈 깃 저장소를 다시 초기화했습니다
 ```
 ### 5-4) 로컬저장소와 원격저장소 연결하기
-```
+```zsh
 git remote add origin 해당 레포지토리 주소(원격저장소 주소)
 ```
-```
+```zsh
 jeongyun.choi******** projects % git remote -v
 origin	https://github.com/Jeong-Yun-Choi/Pre-Codyssey-Setup-Test.git (fetch)
 origin	https://github.com/Jeong-Yun-Choi/Pre-Codyssey-Setup-Test.git (push)
 ```
 ### 5-5) 원격저장소와 로컬저장소의 연동 확인하기
-```
+```zsh
 git config --list
 ```
-```
+```zsh
 jeongyun.choi******** projects % git config --list
 credential.helper=osxkeychain
 user.email=*********@*********
@@ -178,11 +238,11 @@ branch.main.vscode-merge-base=origin/main
 ## 7) 검증방법
 ### 실행환경-검증
 **[OS를 확인하는 명령어]**
-```
+```zsh
 sw_vers
 ```
 **[수행 로그]**
-```
+```zsh
 jeongyun.choi******* ~ % sw_vers
 ProductName:		macOS
 ProductVersion:		15.7.7
@@ -193,12 +253,12 @@ BuildVersion:		24G720
 <br>
 
 **[SHELL의 이름과 버전을 확인하는 명령어]**
-```
+```zsh
 echo $SHELL # 쉘의 종류
 zsh --version # 쉘의 버전
 ```
 **[수행 로그]**
-```
+```zsh
 jeongyun.choi****** ~ % echo $SHELL # 쉘의 종류
 /bin/zsh
 jeongyun.choi****** ~ % zsh --version # 쉘의 버전
@@ -208,13 +268,13 @@ zsh 5.9 (x86_64-apple-darwin24.0)
 <br>
 
 **[터미널의 이름과 버전을 확인하는 명령어]**
-```
+```zsh
 echo $TERM_PROGRAM # 터미널명
 echo $TERM_PROGRAM_VERSION # 터미널 버전 확인
 ```
 
 **[수행 로그]**
-```
+```zsh
 jeongyun.choi******* ~ % echo $TERM_PROGRAM
 Apple_Terminal
 jeongyun.choi*******~ % echo $TERM_PROGRAM_VERSION
@@ -224,11 +284,11 @@ jeongyun.choi*******~ % echo $TERM_PROGRAM_VERSION
 <br>
 
 **[Docker 버전을 확인하는 명령어]**
-```
+```zsh
 docker --version
 ```
 **[수행 로그]**
-```
+```zsh
 jeongyun.choi****** ~ % docker --version
 Docker version 28.5.2, build ecc6942
 ```
@@ -236,11 +296,11 @@ Docker version 28.5.2, build ecc6942
 <br>
 
 **[Git의 버전을 확인하는 명령어]**
-```
+```zsh
 git --version
 ```
 **[수행 로그]**
-```
+```zsh
 jeongyun.choi******* projects % git --version
 git version 2.53.0
 ```
