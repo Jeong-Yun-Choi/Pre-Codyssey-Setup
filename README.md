@@ -70,22 +70,22 @@
 
 ## 3) 터미널 조작 및 권한 실습
 ### 3-1) 터미널 조작
-**[현재 위치를 확인하는 명령어]**
+**- 현재 위치를 확인하는 명령어**
 ```zsh
 pwd
 ```
-**[수행 로그]**
+**&#9654; 수행 로그**
 ```zsh
 jeongyun.choi****** ~ % pwd
 /Users/jeongyun.choi******
 ```
-**[숨김 파일을 포함한 목록 확인하는 명령어]**
+**- 숨김 파일을 포함한 목록 확인하는 명령어**
 ```zsh
 ls -la
 ```
--l: 상세히 보기, -a: 숨김파일까지 모두 표시
+`-l`: 상세히 보기, `-a`: 숨김파일까지 모두 표시
 
-**[수행 로그]**
+**&#9654; 수행 로그**
 ```zsh
 jeongyun.choi****** ~ % ls -la
 total 64
@@ -115,33 +115,166 @@ drwxr-xr-x   5 jeongyun.choi******  jeongyun.choi******    160  8  3 16:11 proje
 drwxr-xr-x+  4 jeongyun.choi******  jeongyun.choi******    128  8  3 09:10 Public
 drwxr-xr-x   2 jeongyun.choi******  jeongyun.choi******     64  8  3 11:52 test
 ```
-**[특정한 디렉토리로 이동하는 명령어]**
+#### 이동
+**- 특정한 디렉토리로 이동하는 명령어**
 ```zsh
-cd ~/경로
+cd 경로
 ```
-**[수행 로그]**
+&#8251; 이동하고자 하는 디렉토리가 현재 위치에 있지 않는 경우, 현재 위치에서 해당 디렉토리까지의 전체 경로가 표현되어야만 이동할 수 있다.
+
+**&#9654; 수행 로그**
 ```zsh
-jeongyun.choi****** ~ % cd projects
+jeongyun.choi****** ~ % cd projects # 이동하고자 하는 디렉토리가 현재 위치에 바로 있는 경우
 jeongyun.choi****** projects % 
+
+jeongyun.choi****** ~ % cd test/intest/inintest # 이동하고자 디렉토리가 현재 위치에 바로 있지 않은 경우
+jeongyun.choi****** inintest % pwd                    
+/Users/jeongyun.choi*******/test/intest/inintest
 ```
+`~` : 홈 디렉토리, `/` : 루트 디렉토리
 <br>
 <br>
 
-*파일과 디렉토리의 이름을 변경하는 명령어는 mv로 동일하다.
+&#8251; 파일과 디렉토리의 이름을 변경하는 명령어는 mv로 동일하다. 경로를 변경하지 않으면 이름을 변경하는 명령어로 작동한다.
 
-**[파일 및 디렉토리를 이동시키는 명령어]**
+**- 파일 및 디렉토리를 이동시키는 명령어**
 ```zsh
-mv 파일명(디렉토리명).파일형식 ~/이동시킬 경로
+mv 파일명(디렉토리명).파일형식 이동시킬 경로
 ```
 
-**[파일 및 디렉토리의 이름을 변경하는 명령어]**
+**- 파일 및 디렉토리의 이름을 변경하는 명령어**
 ```zsh
 mv 파일명(디렉토리명).파일형식 변경할 파일명(디렉토리명)
 ```
+#### 생성
+
+**- 파일을 생성하는 명령어**
+
+**- 디렉토리를 생성하는 명령어**
+
+#### 복사
+
+#### 삭제
+
+#### 파일 내용 확인
+
+#### 빈 파일 생성
 
 ### 3-2) 권한 실습
+
+
+
 ## 4) Docker 실습
 ### 4-1) Docker 설치 및 기본 점검
+**- Docker 설치 확인 및 버전 확인하는 명령어**
+```zsh
+docker --version
+```
+**&#9654; 수행 로그**
+```zsh
+jeongyun.choi****** ~ % docker --version
+Docker version 28.5.2, build ecc6942
+```
+```zsh
+jeongyun.choi******~ % docker info
+Client:
+ Version:    28.5.2
+ Context:    orbstack
+ Debug Mode: false
+ Plugins:
+  buildx: Docker Buildx (Docker Inc.)
+    Version:  v0.29.1
+    Path:     /Users/jeongyun.choi******/.docker/cli-plugins/docker-buildx
+  compose: Docker Compose (Docker Inc.)
+    Version:  v2.40.3
+    Path:     /Users/jeongyun.choi******/.docker/cli-plugins/docker-compose
+
+Server:
+ Containers: 0
+  Running: 0
+  Paused: 0
+  Stopped: 0
+ Images: 0
+ Server Version: 28.5.2
+ Storage Driver: overlay2
+  Backing Filesystem: btrfs
+  Supports d_type: true
+  Using metacopy: false
+  Native Overlay Diff: true
+  userxattr: false
+ Logging Driver: json-file
+ Cgroup Driver: cgroupfs
+ Cgroup Version: 2
+ Plugins:
+  Volume: local
+  Network: bridge host ipvlan macvlan null overlay
+  Log: awslogs fluentd gcplogs gelf journald json-file local splunk syslog
+ CDI spec directories:
+  /etc/cdi
+  /var/run/cdi
+ Swarm: inactive
+ Runtimes: io.containerd.runc.v2 runc
+ Default Runtime: runc
+ Init Binary: docker-init
+ containerd version: 1c4457e00facac03ce1d75f7b6777a7a851e5c41
+ runc version: d842d7719497cc3b774fd71620278ac9e17710e0
+ init version: de40ad0
+ Security Options:
+  seccomp
+   Profile: builtin
+  cgroupns
+ Kernel Version: 6.17.8-orbstack-00308-g8f9c941121b1
+ Operating System: OrbStack
+ OSType: linux
+ Architecture: x86_64
+ CPUs: 6
+ Total Memory: 15.67GiB
+ Name: orbstack
+ ID: 713b2d7a-8952-4054-931f-879b6d592dde
+ Docker Root Dir: /var/lib/docker
+ Debug Mode: false
+ Experimental: false
+ Insecure Registries:
+  ::1/128
+  127.0.0.0/8
+ Live Restore Enabled: false
+ Product License: Community Engine
+ Default Address Pools:
+   Base: 192.168.97.0/24, Size: 24
+   Base: 192.168.107.0/24, Size: 24
+   Base: 192.168.117.0/24, Size: 24
+   Base: 192.168.147.0/24, Size: 24
+   Base: 192.168.148.0/24, Size: 24
+   Base: 192.168.155.0/24, Size: 24
+   Base: 192.168.156.0/24, Size: 24
+   Base: 192.168.158.0/24, Size: 24
+   Base: 192.168.163.0/24, Size: 24
+   Base: 192.168.164.0/24, Size: 24
+   Base: 192.168.165.0/24, Size: 24
+   Base: 192.168.166.0/24, Size: 24
+   Base: 192.168.167.0/24, Size: 24
+   Base: 192.168.171.0/24, Size: 24
+   Base: 192.168.172.0/24, Size: 24
+   Base: 192.168.181.0/24, Size: 24
+   Base: 192.168.183.0/24, Size: 24
+   Base: 192.168.186.0/24, Size: 24
+   Base: 192.168.207.0/24, Size: 24
+   Base: 192.168.214.0/24, Size: 24
+   Base: 192.168.215.0/24, Size: 24
+   Base: 192.168.216.0/24, Size: 24
+   Base: 192.168.223.0/24, Size: 24
+   Base: 192.168.227.0/24, Size: 24
+   Base: 192.168.228.0/24, Size: 24
+   Base: 192.168.229.0/24, Size: 24
+   Base: 192.168.237.0/24, Size: 24
+   Base: 192.168.239.0/24, Size: 24
+   Base: 192.168.242.0/24, Size: 24
+   Base: 192.168.247.0/24, Size: 24
+   Base: fd07:b51a:cc66:d000::/56, Size: 64
+
+WARNING: DOCKER_INSECURE_NO_IPTABLES_RAW is set
+```
+
 ### 4-2) Docker 기본 운영 명령 수행
 ### 4-3) 컨테이너 실행 실습
 ### 4-4) 기존 Dockerfile 기반 커스텀 이미지 제작
@@ -177,11 +310,11 @@ jeongyun.choi********~ % pwd # 현재 위치 확인
 jeongyun.choi ~ % cd projects # 로컬저장소로 사용할 디렉토리로 이동
 jeongyun.choi******** projects % 
 ```
-**[Git 초기화시 사용되는 명령어]**
+**- Git 초기화시 사용되는 명령어**
 ```zsh
 git init
 ```
-**[수행 로그]**
+**&#9654; 수행 로그**
 ```zsh
 jeongyun.choi******** projects % git init
 hint: Using 'master' as the name for the initial branch. This default branch name
@@ -237,11 +370,11 @@ branch.main.vscode-merge-base=origin/main
 
 ## 7) 검증방법
 ### 실행환경-검증
-**[OS를 확인하는 명령어]**
+**- OS를 확인하는 명령어**
 ```zsh
 sw_vers
 ```
-**[수행 로그]**
+**&#9654; 수행 로그**
 ```zsh
 jeongyun.choi******* ~ % sw_vers
 ProductName:		macOS
@@ -257,7 +390,7 @@ BuildVersion:		24G720
 echo $SHELL # 쉘의 종류
 zsh --version # 쉘의 버전
 ```
-**[수행 로그]**
+**&#9654; 수행 로그**
 ```zsh
 jeongyun.choi****** ~ % echo $SHELL # 쉘의 종류
 /bin/zsh
@@ -267,13 +400,13 @@ zsh 5.9 (x86_64-apple-darwin24.0)
 <br>
 <br>
 
-**[터미널의 이름과 버전을 확인하는 명령어]**
+**- 터미널의 이름과 버전을 확인하는 명령어**
 ```zsh
 echo $TERM_PROGRAM # 터미널명
 echo $TERM_PROGRAM_VERSION # 터미널 버전 확인
 ```
 
-**[수행 로그]**
+**&#9654; 수행 로그**
 ```zsh
 jeongyun.choi******* ~ % echo $TERM_PROGRAM
 Apple_Terminal
@@ -283,11 +416,11 @@ jeongyun.choi*******~ % echo $TERM_PROGRAM_VERSION
 <br>
 <br>
 
-**[Docker 버전을 확인하는 명령어]**
+**- Docker 버전을 확인하는 명령어**
 ```zsh
 docker --version
 ```
-**[수행 로그]**
+**&#9654; 수행 로그**
 ```zsh
 jeongyun.choi****** ~ % docker --version
 Docker version 28.5.2, build ecc6942
@@ -295,11 +428,11 @@ Docker version 28.5.2, build ecc6942
 <br>
 <br>
 
-**[Git의 버전을 확인하는 명령어]**
+**- Git의 버전을 확인하는 명령어**
 ```zsh
 git --version
 ```
-**[수행 로그]**
+**&#9654; 수행 로그**
 ```zsh
 jeongyun.choi******* projects % git --version
 git version 2.53.0
