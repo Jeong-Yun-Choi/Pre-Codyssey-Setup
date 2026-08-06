@@ -78,6 +78,7 @@
 
 ## 3) 터미널 조작 및 권한 실습
 ### 3-1) 터미널 조작
+
 **- 현재 위치를 확인하는 명령어**
 ```zsh
 pwd
@@ -95,7 +96,7 @@ ls -la
 
 **&#9654; 수행 로그**
 ```zsh
-jeongyun.choi****** ~ % ls -la
+jeongyun.choi****** ~ % ls -la # 숨김파일 포함 목록 확인
 total 64
 drwxr-x---+ 25 jeongyun.choi******  jeongyun.choi******    800  8  3 16:17 .
 drwxr-xr-x   6 root                 admin                  192  8  3 09:10 ..
@@ -128,7 +129,7 @@ drwxr-xr-x   2 jeongyun.choi******  jeongyun.choi******     64  8  3 11:52 test
 ```zsh
 cd 경로
 ```
-&#8251; 이동하고자 하는 디렉토리가 현재 위치에 있지 않는 경우, 현재 위치에서 해당 디렉토리까지의 전체 경로가 표현되어야만 이동할 수 있다.
+&#8251; 이동하고자 하는 디렉토리가 현재 위치에 있지 않은 경우, 현재 위치에서 해당 디렉토리까지의 전체 경로가 표현되어야만 이동할 수 있다.
 
 **&#9654; 수행 로그**
 ```zsh
@@ -174,6 +175,7 @@ mv 파일명(디렉토리명).파일형식 변경할 파일명(디렉토리명)
 
 ## 4) Docker 실습
 ### 4-1) Docker 설치 및 기본 점검
+
 **- Docker 설치 확인 및 버전 확인하는 명령어**
 ```zsh
 docker --version
@@ -183,6 +185,22 @@ docker --version
 jeongyun.choi****** ~ % docker --version
 Docker version 28.5.2, build ecc6942
 ```
+**- docker 데몬 동작 여부 확인하는 명령어**
+```zsh
+docker info
+```
+&#8251; `Server:` 뒤에 다음과 같이 출력결과가 나온다면 데몬이 정상적으로 동작하고 있음을 알 수 있다.
+```zsh
+Server:
+ Containers: 0
+  Running: 0
+  Paused: 0
+  Stopped: 0
+ Images: 0
+ Server Version: 28.5.2
+```
+**&#9654; 수행 로그**
+
 ```zsh
 jeongyun.choi******~ % docker info
 Client:
@@ -282,7 +300,50 @@ Server:
 
 WARNING: DOCKER_INSECURE_NO_IPTABLES_RAW is set
 ```
+&#8251; 만약 orbstack이 완전히 종료된 상태이거나 정상적으로 동작하고 있지 않다면 다음과 같은 문구가 뜨게 된다.
+```zsh
+Server:
+Cannot connect to the Docker daemon at unix:///Users/jeongyun.choi******/.orbstack/run/docker.sock. Is the docker daemon running?
+```
+**&#9654; 수행 로그**
+```zsh
+jeongyun.choi****** ~ % docker info
+Client:
+ Version:    28.5.2
+ Context:    orbstack
+ Debug Mode: false
+ Plugins:
+  buildx: Docker Buildx (Docker Inc.)
+    Version:  v0.29.1
+    Path:     /Users/jeongyun.choi******/.docker/cli-plugins/docker-buildx
+  compose: Docker Compose (Docker Inc.)
+    Version:  v2.40.3
+    Path:     /Users/jeongyun.choi******/.docker/cli-plugins/docker-compose
 
+Server:
+Cannot connect to the Docker daemon at unix:///Users/jeongyun.choi******/.orbstack/run/docker.sock. Is the docker daemon running?
+```
+
+**- 간단하게 데몬 동작 여부를 확인할 수 있는 명령어**
+```zsh
+docker ps
+```
+**&#9654; 수행 로그**
+
+```zsh
+jeongyun.choi****** ~ % docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+```
+<br>
+<br>
+
+**- 정상적으로 동작하고 있지 않을 때**
+
+**&#9654; 수행 로그**
+```zsh
+jeongyun.choi******* ~ % docker ps
+Cannot connect to the Docker daemon at unix:///Users/jeongyun.choi******/.orbstack/run/docker.sock. Is the docker daemon running?
+```
 ### 4-2) Docker 기본 운영 명령 수행
 ### 4-3) 컨테이너 실행 실습
 ### 4-4) 기존 Dockerfile 기반 커스텀 이미지 제작
