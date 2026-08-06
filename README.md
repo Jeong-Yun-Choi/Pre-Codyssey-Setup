@@ -389,18 +389,25 @@ jeongyun.choi******** projects-setup % git init
 /Users/jeongyun.choi******/projects-setup/.git/ 안의 빈 깃 저장소를 다시 초기화했습니다
 ```
 ### 5-4) 로컬저장소와 원격저장소 연결하기
+**- 두 저장소를 연결하는 명령어**
+
 ```zsh
 git remote add origin 해당 레포지토리 주소(원격저장소 주소)
 ```
+**&#9654; 수행 로그**
+
 ```zsh
 jeongyun.choi******** projects-setup % git remote -v
 origin	https://github.com/Jeong-Yun-Choi/Pre-Codyssey-Setup.git (fetch)
 origin	https://github.com/Jeong-Yun-Choi/Pre-Codyssey-Setup.git (push)
 ```
 ### 5-5) 원격저장소와 로컬저장소의 연동 확인하기
+**- 두 저장소의 연동 확인하는 명령어**
 ```zsh
 git config --list
 ```
+**&#9654; 수행 로그**
+
 ```zsh
 jeongyun.choi******** projects-setup % git config --list
 credential.helper=osxkeychain
