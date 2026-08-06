@@ -135,7 +135,7 @@ cd 경로
 jeongyun.choi****** ~ % cd projects # 이동하고자 하는 디렉토리가 현재 위치에 바로 있는 경우
 jeongyun.choi****** projects % 
 
-jeongyun.choi****** ~ % cd test/intest/inintest # 이동하고자 디렉토리가 현재 위치에 바로 있지 않은 경우
+jeongyun.choi****** ~ % cd test/intest/inintest # 이동하고자 하는 디렉토리가 현재 위치에 바로 있지 않은 경우
 jeongyun.choi****** inintest % pwd                    
 /Users/jeongyun.choi*******/test/intest/inintest
 ```
@@ -154,7 +154,7 @@ mv 파일명(디렉토리명).파일형식 이동시킬 경로
 ```zsh
 mv 파일명(디렉토리명).파일형식 변경할 파일명(디렉토리명)
 ```
-#### [생성]
+#### 생성
 
 **- 파일을 생성하는 명령어**
 
