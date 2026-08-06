@@ -154,7 +154,7 @@ mv 파일명(디렉토리명).파일형식 이동시킬 경로
 ```zsh
 mv 파일명(디렉토리명).파일형식 변경할 파일명(디렉토리명)
 ```
-#### 생성
+#### [생성]
 
 **- 파일을 생성하는 명령어**
 
@@ -355,8 +355,8 @@ core.precomposeunicode=true
 remote.origin.url=https://github.com/Jeong-Yun-Choi/Pre-Codyssey-Setup.git
 remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
 ```
-### 5-6) VScode와 GitHub 계정 연동 확인하기
-![vscode_github_connect](/screenshot/github_vscode_connect.png)
+### 5-6) VSCode와 GitHub 계정 연동 확인하기
+![vscode_github_connect](./screenshot/github_vscode_connect.png)
 
 ## 6) 트러블슈팅
 
