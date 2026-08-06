@@ -345,6 +345,18 @@ jeongyun.choi******* ~ % docker ps
 Cannot connect to the Docker daemon at unix:///Users/jeongyun.choi******/.orbstack/run/docker.sock. Is the docker daemon running?
 ```
 ### 4-2) Docker 기본 운영 명령 수행
+**- 다운로드된 이미지를 확인하는 명령어**
+
+```zsh
+docker images
+```
+**&#9654; 수행 로그**
+```zsh
+jeongyun.choi****** ~ % docker images
+REPOSITORY   TAG       IMAGE ID   CREATED   SIZE
+```
+현재는 docker를 처음 실행한 상태이기 때문에 이미지 목록에는 아무것도 뜨지 않는다.
+
 ### 4-3) 컨테이너 실행 실습
 ### 4-4) 기존 Dockerfile 기반 커스텀 이미지 제작
 ### 4-5) 포트 매핑 및 접속
