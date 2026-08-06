@@ -20,6 +20,10 @@
 
 [3) 터미널 조작 및 권한 실습](#3-터미널-조작-및-권한-실습)
 
+&nbsp;&nbsp;&nbsp;&nbsp; [3-1) 터미널 조작](#3-1-터미널-조작)
+
+&nbsp;&nbsp;&nbsp;&nbsp; [3-2) 권한 실습](#3-2-권한-실습)
+
 [4) Docker 실습](#4-docker-실습)
 
 &nbsp;&nbsp;&nbsp;&nbsp;[4-1) Docker 설치 및 기본 점검](#4-1-docker-설치-및-기본-점검)
@@ -282,22 +286,22 @@ WARNING: DOCKER_INSECURE_NO_IPTABLES_RAW is set
 ### 4-6) Docker 볼륨 영속성 검증
 ## 5) Git 설정 및 GitHub 연동
 ### 5-1) GitHub 계정 연동하기
-[계정 연동 시 사용되는 명령어]
+**- 계정 연동 시 사용되는 명령어**
 ```zsh
 git config --global user.email "이메일주소"
 git config --global user.name "사용자이름(username)"
 ```
-[수행 로그]
+**&#9654; 수행 로그**
 ```zsh
 jeongyun.choi******** ~ % git config --global user.name "Jeong-Yun-Choi" # GitHub 가입 시 사용한 사용자이름(username)
 jeongyun.choi******** ~ % git config --global user.email "******@******" # GitHub 가입 시 사용한 이메일 주소
 ```
 ### 5-2) 기본 브랜치 설정하기
-**[기본 브랜치 설정 시 사용되는 명령어]**
+**- 기본 브랜치 설정 시 사용되는 명령어**
 ```zsh
 git config --global init.defaultBranch main
 ```
-**[수행 로그]**
+**&#9654; 수행 로그**
 ```zsh
 jeongyun.choi******* projects-setup % git config --global init.defaultBranch main
 main
@@ -369,7 +373,7 @@ BuildVersion:		24G720
 <br>
 <br>
 
-**[SHELL의 이름과 버전을 확인하는 명령어]**
+**- SHELL의 이름과 버전을 확인하는 명령어**
 ```zsh
 echo $SHELL # 쉘의 종류
 zsh --version # 쉘의 버전
