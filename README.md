@@ -47,7 +47,7 @@
 ## 1) [실행환경](#실행환경-검증)
 - **OS :  macOS 15.7.7**
 
-- **SHELL : zsh 5.9 x86_64**
+- **SHELL : bash 5.9 x86_64**
 
 - **Terminal : Apple_Terminal 455.1**
 
@@ -80,22 +80,22 @@
 ### 3-1) 터미널 조작
 
 **- 현재 위치를 확인하는 명령어**
-```zsh
+```bash
 pwd
 ```
 **&#9654; 수행 로그**
-```zsh
+```bash
 jeongyun.choi****** ~ % pwd
 /Users/jeongyun.choi******
 ```
 **- 숨김 파일을 포함한 목록 확인하는 명령어**
-```zsh
+```bash
 ls -la
 ```
 `-l`: 상세히 보기, `-a`: 숨김파일까지 모두 표시
 
 **&#9654; 수행 로그**
-```zsh
+```bash
 jeongyun.choi****** ~ % ls -la # 숨김파일 포함 목록 확인
 total 64
 drwxr-x---+ 25 jeongyun.choi******  jeongyun.choi******    800  8  3 16:17 .
@@ -110,8 +110,8 @@ drwxr-xr-x   3 jeongyun.choi******  jeongyun.choi******     96  8  3 10:53 .ssh
 drwx------+ 14 jeongyun.choi******  jeongyun.choi******    448  8  3 16:11 .Trash
 drwxr-xr-x   5 jeongyun.choi******  jeongyun.choi******    160  8  3 10:33 .vscode
 -rw-r--r--   1 jeongyun.choi******  jeongyun.choi******    154  8  3 10:53 .zprofile
--rw-------   1 jeongyun.choi******  jeongyun.choi******    540  8  3 16:17 .zsh_history
-drwx------  15 jeongyun.choi******  jeongyun.choi******    480  8  3 16:17 .zsh_sessions
+-rw-------   1 jeongyun.choi******  jeongyun.choi******    540  8  3 16:17 .bash_history
+drwx------  15 jeongyun.choi******  jeongyun.choi******    480  8  3 16:17 .bash_sessions
 drwx------+  5 jeongyun.choi******  jeongyun.choi******    160  8  3 16:11 Desktop
 drwx------+  3 jeongyun.choi******  jeongyun.choi******     96  8  3 09:10 Documents
 drwx------+  6 jeongyun.choi******  jeongyun.choi******    192  8  3 14:06 Downloads
@@ -126,13 +126,13 @@ drwxr-xr-x   2 jeongyun.choi******  jeongyun.choi******     64  8  3 11:52 test
 ```
 #### 이동
 **- 특정한 디렉토리로 이동하는 명령어**
-```zsh
+```bash
 cd 경로
 ```
 &#8251; 이동하고자 하는 디렉토리가 현재 위치에 있지 않은 경우, 현재 위치에서 해당 디렉토리까지의 전체 경로가 표현되어야만 이동할 수 있다.
 
 **&#9654; 수행 로그**
-```zsh
+```bash
 jeongyun.choi****** ~ % cd projects # 이동하고자 하는 디렉토리가 현재 위치에 바로 있는 경우
 jeongyun.choi****** projects % 
 
@@ -147,12 +147,12 @@ jeongyun.choi****** inintest % pwd
 &#8251; 파일과 디렉토리의 이름을 변경하는 명령어는 mv로 동일하다. 경로를 변경하지 않으면 이름을 변경하는 명령어로 작동한다.
 
 **- 파일 및 디렉토리를 이동시키는 명령어**
-```zsh
+```bash
 mv 파일명(디렉토리명).파일형식 이동시킬 경로
 ```
 
 **- 파일 및 디렉토리의 이름을 변경하는 명령어**
-```zsh
+```bash
 mv 파일명(디렉토리명).파일형식 변경할 파일명(디렉토리명)
 ```
 #### 생성
@@ -177,20 +177,20 @@ mv 파일명(디렉토리명).파일형식 변경할 파일명(디렉토리명)
 ### 4-1) Docker 설치 및 기본 점검
 
 **- Docker 설치 확인 및 버전 확인하는 명령어**
-```zsh
+```bash
 docker --version
 ```
 **&#9654; 수행 로그**
-```zsh
+```bash
 jeongyun.choi****** ~ % docker --version
 Docker version 28.5.2, build ecc6942
 ```
 **- docker 데몬 동작 여부 확인하는 명령어**
-```zsh
+```bash
 docker info
 ```
 &#8251; `Server:` 뒤에 다음과 같이 출력결과가 나온다면 데몬이 정상적으로 동작하고 있음을 알 수 있다.
-```zsh
+```bash
 Server:
  Containers: 0
   Running: 0
@@ -201,7 +201,7 @@ Server:
 ```
 **&#9654; 수행 로그**
 
-```zsh
+```bash
 jeongyun.choi******~ % docker info
 Client:
  Version:    28.5.2
@@ -301,12 +301,12 @@ Server:
 WARNING: DOCKER_INSECURE_NO_IPTABLES_RAW is set
 ```
 &#8251; 만약 orbstack이 완전히 종료된 상태이거나 정상적으로 동작하고 있지 않다면 다음과 같은 문구가 뜨게 된다.
-```zsh
+```bash
 Server:
 Cannot connect to the Docker daemon at unix:///Users/jeongyun.choi******/.orbstack/run/docker.sock. Is the docker daemon running?
 ```
 **&#9654; 수행 로그**
-```zsh
+```bash
 jeongyun.choi****** ~ % docker info
 Client:
  Version:    28.5.2
@@ -325,12 +325,12 @@ Cannot connect to the Docker daemon at unix:///Users/jeongyun.choi******/.orbsta
 ```
 
 **- 간단하게 데몬 동작 여부를 확인할 수 있는 명령어**
-```zsh
+```bash
 docker ps
 ```
 **&#9654; 수행 로그**
 
-```zsh
+```bash
 jeongyun.choi****** ~ % docker ps
 CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
 ```
@@ -340,18 +340,18 @@ CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
 **- 정상적으로 동작하고 있지 않을 때**
 
 **&#9654; 수행 로그**
-```zsh
+```bash
 jeongyun.choi******* ~ % docker ps
 Cannot connect to the Docker daemon at unix:///Users/jeongyun.choi******/.orbstack/run/docker.sock. Is the docker daemon running?
 ```
 ### 4-2) Docker 기본 운영 명령 수행
 **- 다운로드된 이미지를 확인하는 명령어**
 
-```zsh
+```bash
 docker images
 ```
 **&#9654; 수행 로그**
-```zsh
+```bash
 jeongyun.choi****** ~ % docker images
 REPOSITORY   TAG       IMAGE ID   CREATED   SIZE
 ```
@@ -364,27 +364,27 @@ REPOSITORY   TAG       IMAGE ID   CREATED   SIZE
 ## 5) Git 설정 및 GitHub 연동
 ### 5-1) GitHub 계정 연동하기
 **- 계정 연동 시 사용되는 명령어**
-```zsh
+```bash
 git config --global user.email "이메일주소"
 git config --global user.name "사용자이름(username)"
 ```
 **&#9654; 수행 로그**
-```zsh
+```bash
 jeongyun.choi******** ~ % git config --global user.name "Jeong-Yun-Choi" # GitHub 가입 시 사용한 사용자이름(username)
 jeongyun.choi******** ~ % git config --global user.email "******@******" # GitHub 가입 시 사용한 이메일 주소
 ```
 ### 5-2) 기본 브랜치 설정하기
 **- 기본 브랜치 설정 시 사용되는 명령어**
-```zsh
+```bash
 git config --global init.defaultBranch main
 ```
 **&#9654; 수행 로그**
-```zsh
+```bash
 jeongyun.choi******* projects-setup % git config --global init.defaultBranch main
 main
 ```
 ### 5-3) 로컬저장소에 Git 초기화하기
-```zsh
+```bash
 jeongyun.choi********~ % pwd # 현재 위치 확인
 /Users/jeongyun.choi******
 
@@ -392,35 +392,35 @@ jeongyun.choi ~ % cd projects-setup # 로컬저장소로 사용할 디렉토리�
 jeongyun.choi******** projects-setup % 
 ```
 **- Git 초기화시 사용되는 명령어**
-```zsh
+```bash
 git init
 ```
 **&#9654; 수행 로그**
-```zsh
+```bash
 jeongyun.choi******** projects-setup % git init
 /Users/jeongyun.choi******/projects-setup/.git/ 안의 빈 깃 저장소를 다시 초기화했습니다
 ```
 ### 5-4) 로컬저장소와 원격저장소 연결하기
 **- 두 저장소를 연결하는 명령어**
 
-```zsh
+```bash
 git remote add origin 해당 레포지토리 주소(원격저장소 주소)
 ```
 **&#9654; 수행 로그**
 
-```zsh
+```bash
 jeongyun.choi******** projects-setup % git remote -v
 origin	https://github.com/Jeong-Yun-Choi/Pre-Codyssey-Setup.git (fetch)
 origin	https://github.com/Jeong-Yun-Choi/Pre-Codyssey-Setup.git (push)
 ```
 ### 5-5) 원격저장소와 로컬저장소의 연동 확인하기
 **- 두 저장소의 연동 확인하는 명령어**
-```zsh
+```bash
 git config --list
 ```
 **&#9654; 수행 로그**
 
-```zsh
+```bash
 jeongyun.choi******** projects-setup % git config --list
 credential.helper=osxkeychain
 user.email=*********@********
@@ -443,11 +443,11 @@ remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
 ## 7) 검증방법
 ### 실행환경-검증
 **- OS를 확인하는 명령어**
-```zsh
+```bash
 sw_vers
 ```
 **&#9654; 수행 로그**
-```zsh
+```bash
 jeongyun.choi******* ~ % sw_vers
 ProductName:		macOS
 ProductVersion:		15.7.7
@@ -458,28 +458,28 @@ BuildVersion:		24G720
 <br>
 
 **- SHELL의 이름과 버전을 확인하는 명령어**
-```zsh
+```bash
 echo $SHELL # 쉘의 종류
-zsh --version # 쉘의 버전
+bash --version # 쉘의 버전
 ```
 **&#9654; 수행 로그**
-```zsh
+```bash
 jeongyun.choi****** ~ % echo $SHELL # 쉘의 종류
-/bin/zsh
-jeongyun.choi****** ~ % zsh --version # 쉘의 버전
-zsh 5.9 (x86_64-apple-darwin24.0)
+/bin/bash
+jeongyun.choi****** ~ % bash --version # 쉘의 버전
+bash 5.9 (x86_64-apple-darwin24.0)
 ```
 <br>
 <br>
 
 **- 터미널의 이름과 버전을 확인하는 명령어**
-```zsh
+```bash
 echo $TERM_PROGRAM # 터미널명
 echo $TERM_PROGRAM_VERSION # 터미널 버전 확인
 ```
 
 **&#9654; 수행 로그**
-```zsh
+```bash
 jeongyun.choi******* ~ % echo $TERM_PROGRAM
 Apple_Terminal
 jeongyun.choi*******~ % echo $TERM_PROGRAM_VERSION
@@ -489,11 +489,11 @@ jeongyun.choi*******~ % echo $TERM_PROGRAM_VERSION
 <br>
 
 **- Docker 버전을 확인하는 명령어**
-```zsh
+```bash
 docker --version
 ```
 **&#9654; 수행 로그**
-```zsh
+```bash
 jeongyun.choi****** ~ % docker --version
 Docker version 28.5.2, build ecc6942
 ```
@@ -501,11 +501,11 @@ Docker version 28.5.2, build ecc6942
 <br>
 
 **- Git의 버전을 확인하는 명령어**
-```zsh
+```bash
 git --version
 ```
 **&#9654; 수행 로그**
-```zsh
+```bash
 jeongyun.choi******* projects % git --version
 git version 2.53.0
 ```
