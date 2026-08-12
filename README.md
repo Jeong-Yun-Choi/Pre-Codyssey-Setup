@@ -79,72 +79,57 @@
 ## 3) 터미널 조작 및 권한 실습
 ### 3-1) 터미널 조작
 
-**- 현재 위치를 확인하는 명령어**
-```bash
-pwd
-```
-**&#9654; 수행 로그**
-```bash
-jeongyun.choi****** ~ % pwd
-/Users/jeongyun.choi******
-```
-**- 숨김 파일을 포함한 목록 확인하는 명령어**
-```bash
-ls -la
-```
-`-l`: 상세히 보기, `-a`: 숨김파일까지 모두 표시
+`-l`: 상세히 보기, `-a`: 숨김파일까지 모두 표시, `~` : 홈 디렉토리
 
-**&#9654; 수행 로그**
-```bash
-jeongyun.choi****** ~ % ls -la # 숨김파일 포함 목록 확인
-total 64
-drwxr-x---+ 25 jeongyun.choi******  jeongyun.choi******    800  8  3 16:17 .
-drwxr-xr-x   6 root                 admin                  192  8  3 09:10 ..
--r--------   1 jeongyun.choi******  jeongyun.choi******      8  8  3 09:10 .CFUserTextEncoding
-drwxr-xr-x   5 jeongyun.choi******  jeongyun.choi******   160  8  3 10:53 .docker
--rw-r--r--@  1 jeongyun.choi****** jeongyun.choi******  10244  8  3 14:05 .DS_Store
--rw-r--r--   1 jeongyun.choi******  jeongyun.choi******     91  8  3 10:11 .gitconfig
--rw-------   1 jeongyun.choi  jeongyun.choi     20  8  3 13:22 .lesshst
-drwxr-xr-x  10 jeongyun.choi******  jeongyun.choi******    320  8  3 10:53 .orbstack
-drwxr-xr-x   3 jeongyun.choi******  jeongyun.choi******     96  8  3 10:53 .ssh
-drwx------+ 14 jeongyun.choi******  jeongyun.choi******    448  8  3 16:11 .Trash
-drwxr-xr-x   5 jeongyun.choi******  jeongyun.choi******    160  8  3 10:33 .vscode
--rw-r--r--   1 jeongyun.choi******  jeongyun.choi******    154  8  3 10:53 .zprofile
--rw-------   1 jeongyun.choi******  jeongyun.choi******    540  8  3 16:17 .bash_history
-drwx------  15 jeongyun.choi******  jeongyun.choi******    480  8  3 16:17 .bash_sessions
-drwx------+  5 jeongyun.choi******  jeongyun.choi******    160  8  3 16:11 Desktop
-drwx------+  3 jeongyun.choi******  jeongyun.choi******     96  8  3 09:10 Documents
-drwx------+  6 jeongyun.choi******  jeongyun.choi******    192  8  3 14:06 Downloads
-drwx------@ 82 jeongyun.choi******  jeongyun.choi******   2624  8  3 14:21 Library
-drwx------   3 jeongyun.choi******  jeongyun.choi******     96  8  3 09:10 Movies
-drwx------+  3 jeongyun.choi******  jeongyun.choi******     96  8  3 09:10 Music
-drwx------   4 jeongyun.choi******  jeongyun.choi******    160  8  3 10:53 OrbStack
-drwx------+  4 jeongyun.choi******  jeongyun.choi******    128  8  3 09:10 Pictures
-drwxr-xr-x   5 jeongyun.choi******  jeongyun.choi******    160  8  3 16:11 projects
-drwxr-xr-x+  4 jeongyun.choi******  jeongyun.choi******    128  8  3 09:10 Public
-drwxr-xr-x   2 jeongyun.choi******  jeongyun.choi******     64  8  3 11:52 test
-```
-#### 이동
-**- 특정한 디렉토리로 이동하는 명령어**
-```bash
-cd 경로
-```
 &#8251; 이동하고자 하는 디렉토리가 현재 위치에 있지 않은 경우, 현재 위치에서 해당 디렉토리까지의 전체 경로가 표현되어야만 이동할 수 있다.
 
+&#8251; 파일과 디렉토리의 이름을 변경하는 명령어는 mv로 동일하다. 경로를 변경하지 않으면 이름을 변경하는 명령어로 작동한다.
+
 **&#9654; 수행 로그**
 ```bash
-jeongyun.choi****** ~ % cd projects # 이동하고자 하는 디렉토리가 현재 위치에 바로 있는 경우
-jeongyun.choi****** projects % 
+# 현재 위치와 파일 목록 확인
+jeongyun.choi** Pre-Codyssey-Setup % pwd # 현재 위치를 확인하는 명령어(현재 위치를 절대경로로 출력해줌)
+/Users/jeongyun.choi**/Pre-Codyssey-Setup
+jeongyun.choi** Pre-Codyssey-Setup % ls -l # -a 옵션을 사용하지 않으면 숨김 파일은 뜨지 않음
+total 32
+drwxr-xr-x  3 jeongyun.choi**  jeongyun.choi**     96  8 12 09:54 docs
+-rw-r--r--  1 jeongyun.choi**  jeongyun.choi**  15736  8 12 09:54 README.md
 
-jeongyun.choi****** ~ % cd test/intest/inintest # 이동하고자 하는 디렉토리가 현재 위치에 바로 있지 않은 경우
-jeongyun.choi****** inintest % pwd                    
-/Users/jeongyun.choi*******/test/intest/inintest
+jeongyun.choi** Pre-Codyssey-Setup % ls -la # 숨김 파일을 포함한 목록을 확인하는 명령어
+total 32
+drwxr-xr-x   5 jeongyun.choi**  jeongyun.choi**    160  8 12 09:54 .
+drwxr-x---+ 19 jeongyun.choi**  jeongyun.choi**    608  8 12 09:56 ..
+drwxr-xr-x  12 jeongyun.choi**  jeongyun.choi**    384  8 12 09:58 .git
+drwxr-xr-x   3 jeongyun.choi**  jeongyun.choi**     96  8 12 09:54 docs
+-rw-r--r--   1 jeongyun.choi**  jeongyun.choi**  15736  8 12 09:54 README.md
+
+# 이동 - 상대경로 표현
+jeongyun.choi** Pre-Codyssey-Setup % cd .. # 현재 위치에서 부모 디렉토리로 이동(현재 위치: Pre-Codyssey-Setup)
+jeongyun.choi** ~ %
+jeongyun.choi** ~ % cd Pre-Codyssey-Setup # 현재 위치에서 특정한 디렉토리로 이동(현재 위치: 홈(~) 디렉토리) 
+jeongyun.choi** Pre-Codyssey-Setup %
+jeongyun.choi** ~ % cd Pre-Codyssey-Setup/docs # 현재 위치에서 하위 디렉토리로 한번에 이동                          
+jeongyun.choi** docs %
+
+
+# 파일과 디렉토리 생성 및 파일의 내용 확인
+jeongyun.choi** ~ % mkdir make-dir # 디렉토리 생성
+jeongyun.choi** ~ % ls -lt # 생성되었는지 확인
+total 16
+drwxr-xr-x   2 jeongyun.choi**  jeongyun.choi**    64  8 12 16:46 make-dir
+
+jeongyun.choi** ~ % echo "파일을 생성합니다" > make-file-echo.txt # 내용 있는 txt 파일 생성
+jeongyun.choi** ~ % cat make-file-echo.txt # 파일 내용 확인
+파일을 생성합니다
+
+jeongyun.choi** ~ % touch make-empty-file.md # 빈 파일 생성
+jeongyun.choi** ~ % ls -lt # 생성되었는지 확인
+total 8
+-rw-r--r--   1 jeongyun.choi**  jeongyun.choi**     0  8 12 16:36 make-empty-file.md
 ```
-`~` : 홈 디렉토리, `/` : 루트 디렉토리
-<br>
-<br>
 
-&#8251; 파일과 디렉토리의 이름을 변경하는 명령어는 mv로 동일하다. 경로를 변경하지 않으면 이름을 변경하는 명령어로 작동한다.
+<br>
+<br>
 
 **- 파일 및 디렉토리를 이동시키는 명령어**
 ```bash
@@ -155,19 +140,12 @@ mv 파일명(디렉토리명).파일형식 이동시킬 경로
 ```bash
 mv 파일명(디렉토리명).파일형식 변경할 파일명(디렉토리명)
 ```
-#### 생성
 
-**- 파일을 생성하는 명령어**
-
-**- 디렉토리를 생성하는 명령어**
 
 #### 복사
 
 #### 삭제
 
-#### 파일 내용 확인
-
-#### 빈 파일 생성
 
 ### 3-2) 권한 실습
 
@@ -182,7 +160,7 @@ docker --version
 ```
 **&#9654; 수행 로그**
 ```bash
-jeongyun.choi****** ~ % docker --version
+jeongyun.choi** ~ % docker --version
 Docker version 28.5.2, build ecc6942
 ```
 **- docker 데몬 동작 여부 확인하는 명령어**
@@ -202,7 +180,7 @@ Server:
 **&#9654; 수행 로그**
 
 ```bash
-jeongyun.choi******~ % docker info
+jeongyun.choi**~ % docker info
 Client:
  Version:    28.5.2
  Context:    orbstack
@@ -210,10 +188,10 @@ Client:
  Plugins:
   buildx: Docker Buildx (Docker Inc.)
     Version:  v0.29.1
-    Path:     /Users/jeongyun.choi******/.docker/cli-plugins/docker-buildx
+    Path:     /Users/jeongyun.choi**/.docker/cli-plugins/docker-buildx
   compose: Docker Compose (Docker Inc.)
     Version:  v2.40.3
-    Path:     /Users/jeongyun.choi******/.docker/cli-plugins/docker-compose
+    Path:     /Users/jeongyun.choi**/.docker/cli-plugins/docker-compose
 
 Server:
  Containers: 0
@@ -303,11 +281,11 @@ WARNING: DOCKER_INSECURE_NO_IPTABLES_RAW is set
 &#8251; 만약 orbstack이 완전히 종료된 상태이거나 정상적으로 동작하고 있지 않다면 다음과 같은 문구가 뜨게 된다.
 ```bash
 Server:
-Cannot connect to the Docker daemon at unix:///Users/jeongyun.choi******/.orbstack/run/docker.sock. Is the docker daemon running?
+Cannot connect to the Docker daemon at unix:///Users/jeongyun.choi**/.orbstack/run/docker.sock. Is the docker daemon running?
 ```
 **&#9654; 수행 로그**
 ```bash
-jeongyun.choi****** ~ % docker info
+jeongyun.choi** ~ % docker info
 Client:
  Version:    28.5.2
  Context:    orbstack
@@ -315,13 +293,13 @@ Client:
  Plugins:
   buildx: Docker Buildx (Docker Inc.)
     Version:  v0.29.1
-    Path:     /Users/jeongyun.choi******/.docker/cli-plugins/docker-buildx
+    Path:     /Users/jeongyun.choi**/.docker/cli-plugins/docker-buildx
   compose: Docker Compose (Docker Inc.)
     Version:  v2.40.3
-    Path:     /Users/jeongyun.choi******/.docker/cli-plugins/docker-compose
+    Path:     /Users/jeongyun.choi**/.docker/cli-plugins/docker-compose
 
 Server:
-Cannot connect to the Docker daemon at unix:///Users/jeongyun.choi******/.orbstack/run/docker.sock. Is the docker daemon running?
+Cannot connect to the Docker daemon at unix:///Users/jeongyun.choi**/.orbstack/run/docker.sock. Is the docker daemon running?
 ```
 
 **- 간단하게 데몬 동작 여부를 확인할 수 있는 명령어**
@@ -331,7 +309,7 @@ docker ps
 **&#9654; 수행 로그**
 
 ```bash
-jeongyun.choi****** ~ % docker ps
+jeongyun.choi** ~ % docker ps
 CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
 ```
 <br>
@@ -341,8 +319,8 @@ CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
 
 **&#9654; 수행 로그**
 ```bash
-jeongyun.choi******* ~ % docker ps
-Cannot connect to the Docker daemon at unix:///Users/jeongyun.choi******/.orbstack/run/docker.sock. Is the docker daemon running?
+jeongyun.choi*** ~ % docker ps
+Cannot connect to the Docker daemon at unix:///Users/jeongyun.choi**/.orbstack/run/docker.sock. Is the docker daemon running?
 ```
 ### 4-2) Docker 기본 운영 명령 수행
 **- 다운로드된 이미지를 확인하는 명령어**
@@ -352,7 +330,7 @@ docker images
 ```
 **&#9654; 수행 로그**
 ```bash
-jeongyun.choi****** ~ % docker images
+jeongyun.choi** ~ % docker images
 REPOSITORY   TAG       IMAGE ID   CREATED   SIZE
 ```
 현재는 docker를 처음 실행한 상태이기 때문에 이미지 목록에는 아무것도 뜨지 않는다.
@@ -370,8 +348,8 @@ git config --global user.name "사용자이름(username)"
 ```
 **&#9654; 수행 로그**
 ```bash
-jeongyun.choi******** ~ % git config --global user.name "Jeong-Yun-Choi" # GitHub 가입 시 사용한 사용자이름(username)
-jeongyun.choi******** ~ % git config --global user.email "******@******" # GitHub 가입 시 사용한 이메일 주소
+jeongyun.choi**** ~ % git config --global user.name "Jeong-Yun-Choi" # GitHub 가입 시 사용한 사용자이름(username)
+jeongyun.choi**** ~ % git config --global user.email "**@**" # GitHub 가입 시 사용한 이메일 주소
 ```
 ### 5-2) 기본 브랜치 설정하기
 **- 기본 브랜치 설정 시 사용되는 명령어**
@@ -380,16 +358,16 @@ git config --global init.defaultBranch main
 ```
 **&#9654; 수행 로그**
 ```bash
-jeongyun.choi******* projects-setup % git config --global init.defaultBranch main
+jeongyun.choi*** projects-setup % git config --global init.defaultBranch main
 main
 ```
 ### 5-3) 로컬저장소에 Git 초기화하기
 ```bash
-jeongyun.choi********~ % pwd # 현재 위치 확인
-/Users/jeongyun.choi******
+jeongyun.choi****~ % pwd # 현재 위치 확인
+/Users/jeongyun.choi**
 
 jeongyun.choi ~ % cd projects-setup # 로컬저장소로 사용할 디렉토리로 이동
-jeongyun.choi******** projects-setup % 
+jeongyun.choi**** projects-setup % 
 ```
 **- Git 초기화시 사용되는 명령어**
 ```bash
@@ -397,8 +375,8 @@ git init
 ```
 **&#9654; 수행 로그**
 ```bash
-jeongyun.choi******** projects-setup % git init
-/Users/jeongyun.choi******/projects-setup/.git/ 안의 빈 깃 저장소를 다시 초기화했습니다
+jeongyun.choi**** projects-setup % git init
+/Users/jeongyun.choi**/projects-setup/.git/ 안의 빈 깃 저장소를 다시 초기화했습니다
 ```
 ### 5-4) 로컬저장소와 원격저장소 연결하기
 **- 두 저장소를 연결하는 명령어**
@@ -409,7 +387,7 @@ git remote add origin 해당 레포지토리 주소(원격저장소 주소)
 **&#9654; 수행 로그**
 
 ```bash
-jeongyun.choi******** projects-setup % git remote -v
+jeongyun.choi**** projects-setup % git remote -v
 origin	https://github.com/Jeong-Yun-Choi/Pre-Codyssey-Setup.git (fetch)
 origin	https://github.com/Jeong-Yun-Choi/Pre-Codyssey-Setup.git (push)
 ```
@@ -421,9 +399,9 @@ git config --list
 **&#9654; 수행 로그**
 
 ```bash
-jeongyun.choi******** projects-setup % git config --list
+jeongyun.choi**** projects-setup % git config --list
 credential.helper=osxkeychain
-user.email=*********@********
+user.email=*****@****
 user.name=Jeong-Yun-Choi
 init.defaultbranch=main
 core.repositoryformatversion=0
@@ -448,7 +426,7 @@ sw_vers
 ```
 **&#9654; 수행 로그**
 ```bash
-jeongyun.choi******* ~ % sw_vers
+jeongyun.choi*** ~ % sw_vers
 ProductName:		macOS
 ProductVersion:		15.7.7
 BuildVersion:		24G720
@@ -464,9 +442,9 @@ bash --version # 쉘의 버전
 ```
 **&#9654; 수행 로그**
 ```bash
-jeongyun.choi****** ~ % echo $SHELL # 쉘의 종류
+jeongyun.choi** ~ % echo $SHELL # 쉘의 종류
 /bin/bash
-jeongyun.choi****** ~ % bash --version # 쉘의 버전
+jeongyun.choi** ~ % bash --version # 쉘의 버전
 bash 5.9 (x86_64-apple-darwin24.0)
 ```
 <br>
@@ -480,9 +458,9 @@ echo $TERM_PROGRAM_VERSION # 터미널 버전 확인
 
 **&#9654; 수행 로그**
 ```bash
-jeongyun.choi******* ~ % echo $TERM_PROGRAM
+jeongyun.choi*** ~ % echo $TERM_PROGRAM
 Apple_Terminal
-jeongyun.choi*******~ % echo $TERM_PROGRAM_VERSION
+jeongyun.choi***~ % echo $TERM_PROGRAM_VERSION
 455.1
 ```
 <br>
@@ -494,7 +472,7 @@ docker --version
 ```
 **&#9654; 수행 로그**
 ```bash
-jeongyun.choi****** ~ % docker --version
+jeongyun.choi** ~ % docker --version
 Docker version 28.5.2, build ecc6942
 ```
 <br>
@@ -506,6 +484,6 @@ git --version
 ```
 **&#9654; 수행 로그**
 ```bash
-jeongyun.choi******* projects % git --version
+jeongyun.choi*** projects % git --version
 git version 2.53.0
 ```
