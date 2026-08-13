@@ -79,11 +79,11 @@
 ## 3) 터미널 조작 및 권한 실습
 ### 3-1) 터미널 조작
 
-`-l`: 상세히 보기, `-a`: 숨김파일까지 모두 표시, `~` : 홈 디렉토리
+터미널 조작에 익숙해져야 하는 이유는 도커의 컨테이너나 깃이 전부 터미널의 CLI로 수행되기 때문이다.
 
 &#8251; 이동하고자 하는 디렉토리가 현재 위치에 있지 않은 경우, 현재 위치에서 해당 디렉토리까지의 전체 경로가 표현되어야만 이동할 수 있다.
 
-&#8251; 파일과 디렉토리의 이름을 변경하는 명령어는 mv로 동일하다. 경로를 변경하지 않으면 이름을 변경하는 명령어로 작동한다.
+&#8251; 파일과 디렉토리의 이름을 변경하는 명령어는 mv로 동일하다. 경로를 변경하지 않으면 이름을 변경하는 명령어로 작동한다. 또한 이름변경과 동시에 이동시킬 수도 있다.
 
 **&#9654; 수행 로그**
 ```bash
@@ -103,13 +103,46 @@ drwxr-xr-x  12 jeongyun.choi**  jeongyun.choi**    384  8 12 09:58 .git
 drwxr-xr-x   3 jeongyun.choi**  jeongyun.choi**     96  8 12 09:54 docs
 -rw-r--r--   1 jeongyun.choi**  jeongyun.choi**  15736  8 12 09:54 README.md
 
-# 이동 - 상대경로 표현
+
+# 디렉토리로 이동 - 상대경로 표현
 jeongyun.choi** Pre-Codyssey-Setup % cd .. # 현재 위치에서 부모 디렉토리로 이동(현재 위치: Pre-Codyssey-Setup)
 jeongyun.choi** ~ %
 jeongyun.choi** ~ % cd Pre-Codyssey-Setup # 현재 위치에서 특정한 디렉토리로 이동(현재 위치: 홈(~) 디렉토리) 
 jeongyun.choi** Pre-Codyssey-Setup %
 jeongyun.choi** ~ % cd Pre-Codyssey-Setup/docs # 현재 위치에서 하위 디렉토리로 한번에 이동                          
 jeongyun.choi** docs %
+
+# 파일의 이동
+jeongyun.choi** Desktop % find "$(pwd)" -maxdepth 1 -type f  # 파일이 위치한 절대경로 확인(현재 파일의 위치: Desktop)          
+/Users/jeongyun.choi**/Desktop/move-file.txt
+jeongyun.choi** Desktop % mv move-file.txt /Users/jeongyun.choi**/Documents # 파일을 이동시킬 디렉토리로 이동시킴-절대경로
+jeongyun.choi** Desktop % cd /Users/jeongyun.choi**/Documents 
+jeongyun.choi** Documents % find "$(pwd)" -maxdepth 1 -type f # 이동시킨 뒤 바뀐 위치 절대경로 확인(현재 파일의 위치: Documents)
+/Users/jeongyun.choi**/Documents/move-file.txt
+
+# 디렉토리의 이동
+jeongyun.choi** move-dir % pwd
+/Users/jeongyun.choi**/move-dir
+jeongyun.choi** ~ % mv move-dir Desktop # 현재 위치에서 디렉토리를 Desktop 디렉토리로 이동시킴-상대경로
+jeongyun.choi** ~ % cd Desktop/move-dir 
+jeongyun.choi** move-dir % pwd # 이동되었는지 확인
+/Users/jeongyun.choi**/Desktop/move-dir
+
+# 파일과 디렉토리의 이름 변경
+jeongyun.choi** Documents % ls 
+move-file.txt
+jeongyun.choi** Documents % mv move-file.txt change-filename.txt  # 파일의 이름 변경
+jeongyun.choi** Documents % ls # 변경되었는지 확인
+change-filename.txt
+
+jeongyun.choi** ~ % ls # 이름이 변경되기 전의 디렉토리명: move-dir
+Desktop			Library			Music			Pre-Codyssey-Setup
+Documents		move-dir		OrbStack		Public
+Downloads		Movies			Pictures
+jeongyun.choi** ~ % mv move-dir change-dirname # 디렉토리의 이름 변경
+jeongyun.choi** ~ % cd change-dirname # 변경되었는지 확인
+jeongyun.choi** change-dirname %
+
 
 
 # 파일과 디렉토리 생성 및 파일의 내용 확인
@@ -126,26 +159,46 @@ jeongyun.choi** ~ % touch make-empty-file.md # 빈 파일 생성
 jeongyun.choi** ~ % ls -lt # 생성되었는지 확인
 total 8
 -rw-r--r--   1 jeongyun.choi**  jeongyun.choi**     0  8 12 16:36 make-empty-file.md
+
+
+
+# 파일과 디렉토리의 복사
+jeongyun.choi** Documents % ls # 현재 파일의 원본 위치: Documents
+change-filename.txt
+jeongyun.choi** Documents % cp change-filename.txt /Users/jeongyun.choi**/Downloads # 파일을 복사할 디렉토리로 복사-절대경로
+jeongyun.choi** Documents % cd /Users/jeongyun.choi**/Downloads # 복사되었는지 확인
+jeongyun.choi** Downloads % ls 
+change-filename.txt
+jeongyun.choi** ~ % cd Documents # 복사 한 뒤에도 원본 파일 위치에 있는지 확인
+jeongyun.choi** Documents % ls
+change-filename.txt
+
+
+
+# 파일과 디렉토리의 삭제
+jeongyun.choi** ~ % ls # 삭제할 파일 목록 확인
+change-dirname		Downloads		Music			Pre-Codyssey-Setup
+Desktop			Library			OrbStack		Public
+Documents		Movies			Pictures		remove-file.txt
+jeongyun.choi** ~ % rm remove-file.txt # remove-file.txt 파일 삭제
+jeongyun.choi** ~ % ls # 삭제됐는지 확인
+change-dirname		Downloads		Music			Pre-Codyssey-Setup
+Desktop			Library			OrbStack		Public
+Documents		Movies			Pictures
+
+jeongyun.choi** ~ % ls # 삭제할 디렉토리 목록 확인
+Desktop			Library			OrbStack		Public
+Documents		Movies			Pictures		remove-dir
+Downloads		Music			Pre-Codyssey-Setup
+jeongyun.choi** ~ % rm -r remove-dir # remove-dir 디렉토리 삭제
+jeongyun.choi** ~ % ls # 삭제됐는지 확인
+Desktop			Library			OrbStack		Public
+Documents		Movies			Pictures
+Downloads		Music			Pre-Codyssey-Setup
 ```
 
 <br>
 <br>
-
-**- 파일 및 디렉토리를 이동시키는 명령어**
-```bash
-mv 파일명(디렉토리명).파일형식 이동시킬 경로
-```
-
-**- 파일 및 디렉토리의 이름을 변경하는 명령어**
-```bash
-mv 파일명(디렉토리명).파일형식 변경할 파일명(디렉토리명)
-```
-
-
-#### 복사
-
-#### 삭제
-
 
 ### 3-2) 권한 실습
 
