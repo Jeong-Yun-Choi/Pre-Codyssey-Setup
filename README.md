@@ -225,6 +225,25 @@ Downloads		Music			Pre-Codyssey-Setup
 
 
 
+```bash
+# 파일의 권한 변경
+jeongyun.choi** ~ % ls -ld permission.txt # 변경 전 644
+-rw-r--r--  1 jeongyun.choi**  jeongyun.choi**  0  8 14 20:17 permission.txt
+
+jeongyun.choi** ~ % chmod 600 permission.txt # 변경 후(그룹사용자와 기타 사용자의 읽기 권한을 제거)
+jeongyun.choi** ~ % ls -ld permission.txt # 변경되었는지 확인
+-rw-------  1 jeongyun.choi**  jeongyun.choi**  0  8 14 20:17 permission.txt
+
+# 디렉토리의 권한 변경
+jeongyun.choi** ~ % ls -ld permission # 변경 전 755
+drwxr-xr-x  2 jeongyun.choi**  jeongyun.choi**  64  8 14 20:37 permission
+jeongyun.choi** ~ % chmod 700 permission # 변경 후(그룹사용자와 기타사용자의 읽기와 실행 권한을 제거)
+jeongyun.choi** ~ % ls -ld permission # 변경되었는지 확인
+drwx------  2 jeongyun.choi**  jeongyun.choi**  64  8 14 20:37 permission
+```
+<br>
+<br>
+
 ## 4) Docker 실습
 ### 4-1) Docker 설치 및 기본 점검
 
