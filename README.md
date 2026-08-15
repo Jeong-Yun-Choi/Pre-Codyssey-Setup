@@ -256,6 +256,7 @@ drwx------  2 jeongyun.choi**  jeongyun.choi**  64  8 14 20:37 permission
 jeongyun.choi** ~ % docker --version # Docker 설치 확인 및 버전 확인
 Docker version 28.5.2, build ecc6942
 
+
 jeongyun.choi** ~ % docker info # docker 데몬 동작 여부 확인
 Client:
  Version:    28.5.2
@@ -290,12 +291,7 @@ WARNING: DOCKER_INSECURE_NO_IPTABLES_RAW is set
 jeongyun.choi** ~ % docker ps # 간단하게 데몬 동작 여부를 확인
 CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
 ```
-<br>
-<br>
-
-**- 정상적으로 동작하고 있지 않을 때**
-
-**&#9654; 수행 로그**
+반면, 정상작동하지 않고 있을 때는 다음과 같은 문구가 뜬다.
 ```bash
 jeongyun.choi*** ~ % docker ps # 정상적으로 동작하고 있지 않을 때
 Cannot connect to the Docker daemon at unix:///Users/jeongyun.choi**/.orbstack/run/docker.sock. Is the docker daemon running?
