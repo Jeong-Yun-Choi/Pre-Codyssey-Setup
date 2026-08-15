@@ -80,7 +80,7 @@ git version 2.53.0
 ## 2) 수행 항목 체크리스트
 - [X] 터미널 기본 조작 및 폴더 구성
 
-- [ ] 권한 변경 실습
+- [X] 권한 변경 실습
 
 - [ ] Docker 설치 및 기본 점검
 
@@ -285,6 +285,7 @@ Server:
    Base: fd07:b51a:cc66:d000::/56, Size: 64
 
 WARNING: DOCKER_INSECURE_NO_IPTABLES_RAW is set
+
 
 jeongyun.choi** ~ % docker ps # 간단하게 데몬 동작 여부를 확인
 CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
