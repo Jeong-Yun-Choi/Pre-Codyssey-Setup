@@ -366,27 +366,27 @@ root@a3fe2c7f68c3:/#
 exit
 
 # 컨테이너의 종료와 유지(attach/exec)
-jeongyun.choi018629@c6r5s1 ~ % docker run -it --name attach-test ubuntu # 컨테이너 생성 및 실행
+jeongyun.choi** ~ % docker run -it --name attach-test ubuntu # 컨테이너 생성 및 실행
 root@4f7a42bf2b22:/# exit # 컨테이너 종료
 exit
-jeongyun.choi018629@c6r5s1 ~ % docker start attach-test # 컨테이너 재실행
+jeongyun.choi** ~ % docker start attach-test # 컨테이너 재실행
 docker attach attach-test # 메인 프로세스에 attach로 접근
 attach-test
 root@4f7a42bf2b22:/# exit # 컨테이너 종료, 메인 프로세스도 종료됨
 exit
-jeongyun.choi018629@c6r5s1 ~ % docker ps -a # 메인 프로세스가 종료되면서 컨테이너도 종료됨을 알 수 있음
+jeongyun.choi** ~ % docker ps -a # 메인 프로세스가 종료되면서 컨테이너도 종료됨을 알 수 있음
 CONTAINER ID   IMAGE         COMMAND                   CREATED          STATUS                     PORTS     NAMES
 4f7a42bf2b22   ubuntu        "/bin/bash"               29 seconds ago   Exited (0) 8 seconds ago             attach-test
 e6d2896db01f   ubuntu        "sleep infinity"          34 minutes ago   Up 34 minutes                        exit-test
 8e2b16ab11d0   ubuntu        "sh -c 'while true; …"   5 hours ago      Up 5 hours                           my-ubuntu-logs
 4c09e112fee8   ubuntu        "sleep infinity"          5 hours ago      Up 5 hours                           my-first-ubuntu
 9210b398ef95   hello-world   "/hello"                  7 hours ago      Exited (0) 7 hours ago               nifty_hawking
-jeongyun.choi018629@c6r5s1 ~ % docker start attach-test # 컨네이너 재실행
+jeongyun.choi** ~ % docker start attach-test # 컨네이너 재실행
 docker exec -it attach-test bash # 새로운 bash 프로세스로 접근
 attach-test
 root@4f7a42bf2b22:/# exit # 새로운 bash 프로세스 종료
 exit
-jeongyun.choi018629@c6r5s1 ~ % docker ps # 컨테이너가 중지되지 않고 메인 프로세스가 살아있음을 확인할 수 있음
+jeongyun.choi** ~ % docker ps # 컨테이너가 중지되지 않고 메인 프로세스가 살아있음을 확인할 수 있음
 CONTAINER ID   IMAGE     COMMAND                   CREATED          STATUS          PORTS     NAMES
 4f7a42bf2b22   ubuntu    "/bin/bash"               19 minutes ago   Up 16 minutes             attach-test
 e6d2896db01f   ubuntu    "sleep infinity"          53 minutes ago   Up 53 minutes             exit-test
@@ -395,9 +395,84 @@ e6d2896db01f   ubuntu    "sleep infinity"          53 minutes ago   Up 53 minute
 ```
 &#8251; attach는 메인 프로세스에 직접 연결하는 것이므로, 메인 프로세스가 종료되면 컨테이너도 같이 종료된다. 반면, exec는 새로운 프로세스를 생성하여 접근하므로 새로운 프로세스만 종료되고 기존의 메인 프로세스는 종료되지 않아 컨테이너도 종료되지 않는다.
 
+<br>
+<br>
+
 ### 4-3) 기존 Dockerfile 기반 커스텀 이미지 제작
+| 항목 | 내용 |
+|---|---|
+| **기존 베이스 이미지** | `nginx:alpine` |
+| **내가 적용한 커스텀 포인트** | 기존 이미지를 바탕으로 하되, 웹 서버를 별도로 설치하지 않고 HTML 문서를 직접 작성하여 정적 콘텐츠만 변경하고, 상대경로와 절대경로의 차이를 직접 확인함 |
+| ↳ **정적 콘텐츠 변경** | 커스텀 이미지로 교체한 결과를 시각적으로 바로 확인할 수 있도록 `custom-index.html`을 직접 작성하여 nginx의 기본 웹 페이지를 교체함. |
+| ↳ **상대경로 적용** | `custom-index.html` 소스 파일을 `src` 디렉토리에 배치하고 Dockerfile과 웹 페이지 소스 코드의 위치를 서로 다르게 구성하였다. 이를 통해 Dockerfile에서 `src/custom-index.html`과 같은 상대경로를 사용하는 방식 사용함. |
+| ↳ **절대경로 적용** | nginx의 기본 웹 콘텐츠 경로는 `/usr/share/nginx/html/index.html`로 컨테이너 내부 경로이기 때문에 절대경로로 표현됨.
+```bash
+# 기존 이미지 내려받기
+jeongyun.choi** docker-custom-nginx % docker pull nginx:alpine # 
+alpine: Pulling from library/nginx
+55afa1ecc21d: Pull complete 
+3cd534fe98c6: Pull complete 
+1223f016b4e4: Pull complete 
+62bec68d7c31: Pull complete 
+46f977ee452f: Pull complete 
+d0008c891db4: Pull complete 
+390dc935348d: Pull complete 
+46519e7231d2: Pull complete 
+Digest: sha256:4a73073bd557c65b759505da037898b61f1be6cbcc3c2c3aeac22d2a470c1752
+Status: Downloaded newer image for nginx:alpine
+docker.io/library/nginx:alpine
+
+# nginx 이미지가 추가되었는지 확인
+jeongyun.choi** docker-custom-nginx % docker images
+REPOSITORY    TAG       IMAGE ID       CREATED        SIZE
+ubuntu        latest    86a1a31fdd84   3 weeks ago    100MB
+nginx         alpine    f0ba77f796e5   4 weeks ago    62.4MB
+hello-world   latest    e2ac70e7319a   4 months ago   10.1kB
 
 
+# 커스텀 이미지 빌드하기
+jeongyun.choi** docker-custom-nginx % docker build -t my-first-nginx .
+[+] Building 0.9s (7/7) FINISHED                                                                                                 docker:orbstack
+ => [internal] load build definition from Dockerfile                                                                                        0.1s
+ => => transferring dockerfile: 117B                                                                                                        0.0s
+ => [internal] load metadata for docker.io/library/nginx:alpine                                                                             0.0s
+ => [internal] load .dockerignore                                                                                                           0.1s
+ => => transferring context: 2B                                                                                                             0.0s
+ => [internal] load build context                                                                                                           0.1s
+ => => transferring context: 1.48kB                                                                                                         0.0s
+ => CACHED [1/2] FROM docker.io/library/nginx:alpine                                                                                        0.0s
+ => [2/2] COPY src/custom-index.html /usr/share/nginx/html/index.html                                                                       0.1s
+ => exporting to image                                                                                                                      0.2s
+ => => exporting layers                                                                                                                     0.2s
+ => => writing image sha256:913774adb4cc10b07e1651b0ae745a06cbfa66405c6c6b424145a500f370d3ba                                                0.0s
+ => => naming to docker.io/library/my-first-nginx                                                                                           0.0s
+
+ # 커스텀 이미지가 추가되었는지 이미지 목록 확인
+jeongyun.choi** docker-custom-nginx % docker images
+REPOSITORY       TAG       IMAGE ID       CREATED         SIZE
+my-first-nginx   latest    913774adb4cc   2 minutes ago   62.4MB
+ubuntu           latest    86a1a31fdd84   3 weeks ago     100MB
+nginx            alpine    f0ba77f796e5   4 weeks ago     62.4MB
+hello-world      latest    e2ac70e7319a   4 months ago    10.1kB
+
+# 커스텀한 이미지를 바탕으로 컨테이너 생성 및 실행
+jeongyun.choi** docker-custom-nginx % docker run -d --name my-nginx-container -p 8080:80 my-first-nginx
+bda9224a9dd55e4849491d30ae49098a8c339bc75642d1bc3bfaf3a0d2c56159
+jeongyun.choi** docker-custom-nginx % docker ps
+CONTAINER ID   IMAGE            COMMAND                   CREATED          STATUS          PORTS                                     NAMES
+bda9224a9dd5   my-first-nginx   "/docker-entrypoint.…"   12 seconds ago   Up 11 seconds   0.0.0.0:8080->80/tcp, [::]:8080->80/tcp   my-nginx-container
+4f7a42bf2b22   ubuntu           "/bin/bash"               3 hours ago      Up 3 hours                                                attach-test
+e6d2896db01f   ubuntu           "sleep infinity"          3 hours ago      Up 3 hours                                                exit-test
+8e2b16ab11d0   ubuntu           "sh -c 'while true; …"   8 hours ago      Up 8 hours                                                my-ubuntu-logs
+4c09e112fee8   ubuntu           "sleep infinity"          8 hours ago      Up 8 hours                                                my-first-ubuntu
+
+# 컨테이너가 정상 작동 중인지 확인
+jeongyun.choi** docker-custom-nginx % docker ps
+CONTAINER ID   IMAGE            COMMAND                   CREATED          STATUS          PORTS                                     NAMES
+bda9224a9dd5   my-first-nginx   "/docker-entrypoint.…"   44 minutes ago   Up 44 minutes   0.0.0.0:8080->80/tcp, [::]:8080->80/tcp   my-nginx-container
+```
+
+![custom-docker-images](./docs/custom-docker-images.png)
 
 ### 4-4) 포트 매핑 및 접속
 
@@ -408,8 +483,6 @@ e6d2896db01f   ubuntu    "sleep infinity"          53 minutes ago   Up 53 minute
 
 
 ## 5) Git 설정 및 GitHub 연동
-
-
 
 ### 5-1) GitHub 계정 연동하기
 

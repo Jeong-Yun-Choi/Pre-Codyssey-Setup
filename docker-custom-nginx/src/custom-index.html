@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>도커 커스텀 이미지 레시피</title>
+</head>
+<body>
+    <h1>도커 커스텀 이미지 만드는 법</h1>
+    <p>1. 기존 이미지를 내려받는다.</p>
+    <blockquote>
+        <code>
+            docker pull 내려받고자 하는 이미지명
+        </code>
+    </blockquote>
+    <p>2. 도커파일 만들기 전에 빈 도커파일을 생성한다.</p>
+    <blockquote>
+        <code>touch Dockerfile</code>
+    </blockquote>
+    <p>3. 도커파일을 열어서 다음 내용을 기입한 후 저장한다.</p>
+    <blockquote>
+        <code>
+            FROM nginx:alpine<br/>
+            COPY index.html /usr/share/nginx/html/index.html</code>
+    </blockquote>
+    <p>4. 사용할 웹 페이지를 제작한다.</p>
+    <p>5. 커스텀 이미지를 빌드한다.</p>
+    <blockquote>
+        <code>
+            docker build -t custom-nginx .
+        </code>
+    </blockquote>
+    <p>6. 커스텀 이미지로 컨테이너를 실행한다.</p>
+    <blockquote>
+        <code>
+            docker run -d --name 컨테이너명 -p 8080:80 custom-nginx
+        </code>
+    </blockquote>
+    <p>7. 컨테이너 실행 성공 여부를 확인한다.</p>
+    <blockquote>
+        <code>
+            docker ps
+        </code>
+    </blockquote>
+    <p>8. 웹 브라우저에서 결과를 확인한다.</p>
+</body>
+</html>
