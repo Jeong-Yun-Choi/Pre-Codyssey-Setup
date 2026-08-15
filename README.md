@@ -82,9 +82,9 @@ git version 2.53.0
 
 - [X] Docker 설치 및 기본 점검
 
-- [ ] hello-world 실행
+- [X] hello-world 실행
 
-- [ ] ubuntu 컨테이너 실행
+- [X] ubuntu 컨테이너 실행
 
 - [ ] Dockerfile 빌드/실행
 
