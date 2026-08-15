@@ -5,12 +5,12 @@
  - 깃/깃헙(Git/GitHub) : 버전 관리 및 협업툴
  
  본 과제의 목표는 다음과 같습니다.
- 1. 절대 경로 vs 상대 경로
- 2. 파일 권한의 의미, 권한 표기법의 규칙
- 3. 기존 Dockerfile 기반 커스텀 이미지 생성
+ 1. 절대 경로 vs 상대 경로 차이점
+ 2. 파일 권한의 의미, 권한 표기법의 규칙 해석하는 법
+ 3. 기존 Dockerfile 기반 커스텀 이미지 생성하는 법
  4. 포트 매핑이 필요한 이유
- 5. Docker 볼륨(데이터 영속성)
- 6. Git(로컬 버전관리) vs GitHub(원격 협업 플랫폼)의 역할
+ 5. Docker 볼륨(데이터 영속성)의 역할
+ 6. Git(로컬 버전관리) vs GitHub(원격 협업 플랫폼)의 역할 차이점
 
  # 목차
 
@@ -28,15 +28,13 @@
 
 &nbsp;&nbsp;&nbsp;&nbsp;[4-1) Docker 설치 및 기본 점검](#4-1-docker-설치-및-기본-점검)
 
-&nbsp;&nbsp;&nbsp;&nbsp;[4-2) Docker 기본 운영 명령 수행](#4-2-docker-기본-운영-명령-수행)
+&nbsp;&nbsp;&nbsp;&nbsp;[4-2) Docker 기본 운영 명령 수행 및 컨테이너 실행 실습](#4-2-docker-기본-운영-명령-수행-및-컨테이너-실행-실습)
 
-&nbsp;&nbsp;&nbsp;&nbsp;[4-3) 컨테이너 실행 실습](#4-3-컨테이너-실행-실습)
+&nbsp;&nbsp;&nbsp;&nbsp;[4-3) 기존 Dockerfile 기반 커스텀 이미지 제작](#4-3-기존-dockerfile-기반-커스텀-이미지-제작)
 
-&nbsp;&nbsp;&nbsp;&nbsp;[4-4) 기존 Dockerfile 기반 커스텀 이미지 제작](#4-4-기존-dockerfile-기반-커스텀-이미지-제작)
+&nbsp;&nbsp;&nbsp;&nbsp;[4-4) 포트 매핑 및 접속](#4-4-포트-매핑-및-접속)
 
-&nbsp;&nbsp;&nbsp;&nbsp;[4-5) 포트 매핑 및 접속](#4-5-포트-매핑-및-접속)
-
-&nbsp;&nbsp;&nbsp;&nbsp;[4-6) Docker 볼륨 영속성 검증](#4-6-docker-볼륨-영속성-검증)
+&nbsp;&nbsp;&nbsp;&nbsp;[4-5) Docker 볼륨 영속성 검증](#4-5-docker-볼륨-영속성-검증)
 
 [5) Git 설정 및 GitHub 연동](#5-git-설정-및-github-연동)
 
@@ -82,9 +80,11 @@ git version 2.53.0
 
 - [X] 권한 변경 실습
 
-- [ ] Docker 설치 및 기본 점검
+- [X] Docker 설치 및 기본 점검
 
 - [ ] hello-world 실행
+
+- [ ] ubuntu 컨테이너 실행
 
 - [ ] Dockerfile 빌드/실행
 
@@ -223,7 +223,7 @@ Downloads		Music			Pre-Codyssey-Setup
 
 ### 3-2) 권한 실습
 
-[파일 권한 규칙 해석]
+[파일 권한 규칙 해석하는 법]
 
 r(4) : read, 읽기 권한 / w(2) : write, 쓰기 권한 / x(1) : execute, 실행 권한
 
@@ -296,25 +296,123 @@ CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
 jeongyun.choi*** ~ % docker ps # 정상적으로 동작하고 있지 않을 때
 Cannot connect to the Docker daemon at unix:///Users/jeongyun.choi**/.orbstack/run/docker.sock. Is the docker daemon running?
 ```
-### 4-2) Docker 기본 운영 명령 수행
-**- 다운로드된 이미지를 확인하는 명령어**
+<br>
+<br>
 
+### 4-2) Docker 기본 운영 명령 수행 및 컨테이너 실행 실습
 ```bash
-docker images
-```
-**&#9654; 수행 로그**
-```bash
-jeongyun.choi** ~ % docker images
-REPOSITORY   TAG       IMAGE ID   CREATED   SIZE
-```
-현재는 docker를 처음 실행한 상태이기 때문에 이미지 목록에는 아무것도 뜨지 않는다.
+# 기본 운영 명령
+jeongyun.choi** ~ % docker images # 다운로드된 이미지 목록 확인
+REPOSITORY    TAG       IMAGE ID       CREATED        SIZE
+ubuntu        latest    86a1a31fdd84   3 weeks ago    100MB
+hello-world   latest    e2ac70e7319a   4 months ago   10.1kB
 
-### 4-3) 컨테이너 실행 실습
-### 4-4) 기존 Dockerfile 기반 커스텀 이미지 제작
-### 4-5) 포트 매핑 및 접속
-### 4-6) Docker 볼륨 영속성 검증
+# 운영 - 컨테이너 목록 확인
+jeongyun.choi** ~ % docker ps # 현재 실횅 중인 컨테이너 목록
+CONTAINER ID   IMAGE     COMMAND                   CREATED          STATUS          PORTS     NAMES
+8e2b16ab11d0   ubuntu    "sh -c 'while true; …"   37 minutes ago   Up 37 minutes             my-ubuntu-logs
+4c09e112fee8   ubuntu    "sleep infinity"          48 minutes ago   Up 48 minutes             my-first-ubuntu
+
+# 운영 - 로그 확인
+jeongyun.choi** ~ % docker logs my-ubuntu-logs # 로그 확인
+Ubuntu container is running
+Ubuntu container is running
+Ubuntu container is running
+Ubuntu container is running
+
+jeongyun.choi** ~ % docker ps -a # 현재 컨테이너 목록(중지된 컨테이너 포함)
+CONTAINER ID   IMAGE         COMMAND    CREATED          STATUS                      PORTS     NAMES
+9210b398ef95   hello-world   "/hello"   31 minutes ago   Exited (0) 31 minutes ago             nifty_hawking
+
+# 운영 - 리소스 확인
+jeongyun.choi** % ~ docker stats
+CONTAINER ID   NAME              CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O     PIDS 
+8e2b16ab11d0   my-ubuntu-logs    0.00%     8.309MiB / 15.67GiB   0.05%     830B / 126B     630MB / 0B    3 
+4c09e112fee8   my-first-ubuntu   0.00%     1.574MiB / 15.67GiB   0.01%     1.26kB / 126B   16.4MB / 0B   1 
+
+# hello-world 컨테이너 생성 및 실행
+jeongyun.choi** ~ % docker run hello-world # hello-world 컨테이너 생성
+
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+    (amd64)
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker ID:
+ https://hub.docker.com/
+
+For more examples and ideas, visit:
+ https://docs.docker.com/get-started/
+
+
+# ubuntu 컨테이너 생성 및 실행
+# ubuntu는 키보드 입력 옵션이 없으면 생성 및 실행과 동시에 바로 컨테이너가 종료되므로 -it 옵션을 사용
+jeongyun.choi** ~ % docker run -it --name my-first-ubuntu ubuntu # 컨테이너의 이름을 지정하여 생성 및 실행
+root@a3fe2c7f68c3:/# ls # 파일 및 디렉토리의 간단한 목록 표시
+bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+root@a3fe2c7f68c3:/# echo "Hi, my first ubuntu container!" # 간단한 출력테스트
+Hi, my first ubuntu container!
+root@a3fe2c7f68c3:/# 
+exit
+
+# 컨테이너의 종료와 유지(attach/exec)
+jeongyun.choi018629@c6r5s1 ~ % docker run -it --name attach-test ubuntu # 컨테이너 생성 및 실행
+root@4f7a42bf2b22:/# exit # 컨테이너 종료
+exit
+jeongyun.choi018629@c6r5s1 ~ % docker start attach-test # 컨테이너 재실행
+docker attach attach-test # 메인 프로세스에 attach로 접근
+attach-test
+root@4f7a42bf2b22:/# exit # 컨테이너 종료, 메인 프로세스도 종료됨
+exit
+jeongyun.choi018629@c6r5s1 ~ % docker ps -a # 메인 프로세스가 종료되면서 컨테이너도 종료됨을 알 수 있음
+CONTAINER ID   IMAGE         COMMAND                   CREATED          STATUS                     PORTS     NAMES
+4f7a42bf2b22   ubuntu        "/bin/bash"               29 seconds ago   Exited (0) 8 seconds ago             attach-test
+e6d2896db01f   ubuntu        "sleep infinity"          34 minutes ago   Up 34 minutes                        exit-test
+8e2b16ab11d0   ubuntu        "sh -c 'while true; …"   5 hours ago      Up 5 hours                           my-ubuntu-logs
+4c09e112fee8   ubuntu        "sleep infinity"          5 hours ago      Up 5 hours                           my-first-ubuntu
+9210b398ef95   hello-world   "/hello"                  7 hours ago      Exited (0) 7 hours ago               nifty_hawking
+jeongyun.choi018629@c6r5s1 ~ % docker start attach-test # 컨네이너 재실행
+docker exec -it attach-test bash # 새로운 bash 프로세스로 접근
+attach-test
+root@4f7a42bf2b22:/# exit # 새로운 bash 프로세스 종료
+exit
+jeongyun.choi018629@c6r5s1 ~ % docker ps # 컨테이너가 중지되지 않고 메인 프로세스가 살아있음을 확인할 수 있음
+CONTAINER ID   IMAGE     COMMAND                   CREATED          STATUS          PORTS     NAMES
+4f7a42bf2b22   ubuntu    "/bin/bash"               19 minutes ago   Up 16 minutes             attach-test
+e6d2896db01f   ubuntu    "sleep infinity"          53 minutes ago   Up 53 minutes             exit-test
+8e2b16ab11d0   ubuntu    "sh -c 'while true; …"   6 hours ago      Up 6 hours                my-ubuntu-logs
+4c09e112fee8   ubuntu    "sleep infinity"          6 hours ago      Up 6 hours               my-first-ubuntu
+```
+&#8251; attach는 메인 프로세스에 직접 연결하는 것이므로, 메인 프로세스가 종료되면 컨테이너도 같이 종료된다. 반면, exec는 새로운 프로세스를 생성하여 접근하므로 새로운 프로세스만 종료되고 기존의 메인 프로세스는 종료되지 않아 컨테이너도 종료되지 않는다.
+
+### 4-3) 기존 Dockerfile 기반 커스텀 이미지 제작
+
+
+
+### 4-4) 포트 매핑 및 접속
+
+
+
+### 4-5) Docker 볼륨 영속성 검증
+
+
+
 ## 5) Git 설정 및 GitHub 연동
+
+
+
 ### 5-1) GitHub 계정 연동하기
+
 **- 계정 연동 시 사용되는 명령어**
 ```bash
 git config --global user.email "이메일주소"
@@ -385,7 +483,7 @@ remote.origin.url=https://github.com/Jeong-Yun-Choi/Pre-Codyssey-Setup.git
 remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
 ```
 ### 5-6) VSCode와 GitHub 계정 연동 확인하기
-![vscode_github_connect](./screenshot/github_vscode_connect.png)
+![vscode_github_connect](./docs/github_vscode_connect.png)
 
 ## 6) 트러블슈팅
 
