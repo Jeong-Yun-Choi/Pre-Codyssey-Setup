@@ -447,7 +447,7 @@ jeongyun.choi** docker-custom-nginx % docker build -t my-first-nginx .
  => => writing image sha256:913774adb4cc10b07e1651b0ae745a06cbfa66405c6c6b424145a500f370d3ba                                                0.0s
  => => naming to docker.io/library/my-first-nginx                                                                                           0.0s
 
- # 커스텀 이미지가 추가되었는지 이미지 목록 확인
+# 커스텀 이미지가 추가되었는지 이미지 목록 확인
 jeongyun.choi** docker-custom-nginx % docker images
 REPOSITORY       TAG       IMAGE ID       CREATED         SIZE
 my-first-nginx   latest    913774adb4cc   2 minutes ago   62.4MB
@@ -471,76 +471,112 @@ jeongyun.choi** docker-custom-nginx % docker ps
 CONTAINER ID   IMAGE            COMMAND                   CREATED          STATUS          PORTS                                     NAMES
 bda9224a9dd5   my-first-nginx   "/docker-entrypoint.…"   44 minutes ago   Up 44 minutes   0.0.0.0:8080->80/tcp, [::]:8080->80/tcp   my-nginx-container
 ```
+<br>
+<br>
+
+### 4-4) 포트 매핑 및 접속
+```bash
+jeongyun.choi** docker-custom-nginx % curl http://localhost:8080
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>도커 커스텀 이미지 레시피</title>
+</head>
+<body>
+    <h1>도커 커스텀 이미지 만드는 법</h1>
+    <p>1. 기존 이미지를 내려받는다.</p>
+    <blockquote>
+        <code>
+            docker pull 내려받고자 하는 이미지명
+        </code>
+    </blockquote>
+    <p>2. 도커파일 만들기 전에 빈 도커파일을 생성한다.</p>
+    <blockquote>
+        <code>touch Dockerfile</code>
+    </blockquote>
+    <p>3. 도커파일을 열어서 다음 내용을 기입한 후 저장한다.</p>
+    <blockquote>
+        <code>
+            FROM nginx:alpine<br/>
+            COPY index.html /usr/share/nginx/html/index.html</code>
+    </blockquote>
+    <p>4. 사용할 웹 페이지를 제작한다.</p>
+    <p>5. 커스텀 이미지를 빌드한다.</p>
+    <blockquote>
+        <code>
+            docker build -t custom-nginx .
+        </code>
+    </blockquote>
+    <p>6. 커스텀 이미지로 컨테이너를 실행한다.</p>
+    <blockquote>
+        <code>
+            docker run -d --name 컨테이너명 -p 8080:80 custom-nginx
+        </code>
+    </blockquote>
+    <p>7. 컨테이너 실행 성공 여부를 확인한다.</p>
+    <blockquote>
+        <code>
+            docker ps
+        </code>
+    </blockquote>
+    <p>8. 웹 브라우저에서 결과를 확인한다.</p>
+</body>
+</html>
+```
 
 ![custom-docker-images](./docs/custom-docker-images.png)
 
-### 4-4) 포트 매핑 및 접속
-
-
-
 ### 4-5) Docker 볼륨 영속성 검증
 
+```bash
+# 바인드 마운트 영속성 확인
+jeongyun.choi** bind-test % docker run -it --name bind-test \
+> -v "$(pwd)":/data \
+> ubuntu bash
+root@30a7298a176d:/# cat /data/bind-test.txt
+바인드 마운트 하기 전
 
+# 다른 터미널을 열어서 텍스트 파일 수정 후 저장
+jeongyun.choi** bind-test % echo "바인드 마운트 한 후" > bind-test.txt
+jeongyun.choi** bind-test % cat bind-test.txt 
+바인드 마운트 한 후
+
+# 다시 원래 작업중이던 터미널로 돌아와서 변경된 파일의 내용을 출력
+root@30a7298a176d:/# cat /data/bind-test.txt 
+바인드 마운트 한 후
+
+
+# 볼륨 영속성 확인
+jeongyun.choi** volume-test % docker volume create my-volume # 볼륨 생성
+docker run -it --name volume-test -v my-volume:/data ubuntu bash
+my-volume
+root@d2da2c548fc2:/# echo "Volume Test is On!" > /data/volume-test.txt
+root@d2da2c548fc2:/# cat /data/volume-test.txt
+Volume Test is On!
+root@d2da2c548fc2:/# exit
+exit
+
+# 컨테이너 삭제 
+jeongyun.choi** volume-test % docker rm volume-test
+volume-test
+jeongyun.choi** volume-test % docker run -it --name volume-test-new -v my-volume:/data ubuntu bash
+root@751a45e7eaa6:/# cat /data/volume-test.txt
+Volume Test is On!
+```
 
 ## 5) Git 설정 및 GitHub 연동
 
-### 5-1) GitHub 계정 연동하기
-
-**- 계정 연동 시 사용되는 명령어**
-```bash
-git config --global user.email "이메일주소"
-git config --global user.name "사용자이름(username)"
-```
-**&#9654; 수행 로그**
+### 5-1) Git 설정
 ```bash
 jeongyun.choi** ~ % git config --global user.name "Jeong-Yun-Choi" # GitHub 가입 시 사용한 사용자이름(username)
 jeongyun.choi** ~ % git config --global user.email "*****@*****" # GitHub 가입 시 사용한 이메일 주소
-```
-### 5-2) 기본 브랜치 설정하기
-**- 기본 브랜치 설정 시 사용되는 명령어**
-```bash
-git config --global init.defaultBranch main
-```
-**&#9654; 수행 로그**
-```bash
+
+# 기본 브랜치 main으로 설정
 jeongyun.choi*** projects-setup % git config --global init.defaultBranch main
 main
-```
-### 5-3) 로컬저장소에 Git 초기화하기
-```bash
-jeongyun.choi****~ % pwd # 현재 위치 확인
-/Users/jeongyun.choi**
 
-jeongyun.choi ~ % cd projects-setup # 로컬저장소로 사용할 디렉토리로 이동
-jeongyun.choi**** projects-setup % 
-```
-**- Git 초기화시 사용되는 명령어**
-```bash
-git init
-```
-**&#9654; 수행 로그**
-```bash
-jeongyun.choi**** projects-setup % git init
-/Users/jeongyun.choi**/projects-setup/.git/ 안의 빈 깃 저장소를 다시 초기화했습니다
-```
-### 5-4) 로컬저장소와 원격저장소 연결하기
-**- 두 저장소를 연결하는 명령어**
-
-```bash
-git remote add origin 해당 레포지토리 주소(원격저장소 주소)
-```
-**&#9654; 수행 로그**
-
-```bash
-jeongyun.choi**** projects-setup % git remote -v
-origin	https://github.com/Jeong-Yun-Choi/Pre-Codyssey-Setup.git (fetch)
-origin	https://github.com/Jeong-Yun-Choi/Pre-Codyssey-Setup.git (push)
-```
-### 5-5) 원격저장소와 로컬저장소의 연동 확인하기
-**- 두 저장소의 연동 확인하는 명령어**
-
-
-```bash
+# github 연동 확인
 jeongyun.choi**** projects-setup % git config --list
 credential.helper=osxkeychain
 user.email=*****@****
@@ -555,9 +591,7 @@ core.precomposeunicode=true
 remote.origin.url=https://github.com/Jeong-Yun-Choi/Pre-Codyssey-Setup.git
 remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
 ```
-### 5-6) VSCode와 GitHub 계정 연동 확인하기
+### 5-2) VSCode와 GitHub 계정 연동 확인하기
 ![vscode_github_connect](./docs/github_vscode_connect.png)
 
 ## 6) 트러블슈팅
-
-## 7) 검증방법
