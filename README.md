@@ -630,4 +630,40 @@ remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
 ### 5-2) VSCode와 GitHub 계정 연동 확인하기
 ![vscode_github_connect](./docs/github_vscode_connect.png)
 
+<br>
+<br>
+
 ## 6) 트러블슈팅
+
+**[1] git 원격저장소 연결 실패 사례**
+
+| 항목 | 내용 |
+|---|---|
+| **문제** | 원격저장소의 링크를 넣어 원격저장소를 연동하려고 했으나 연동에 실패함.  |
+| **원인/가설** | 원격저장소 링크를 통해 접근할 수 없는 문제가 있을 수 있음. 혹은 링크 자체가 잘못되었거나 변경되었을 가능성도 존재.  |
+| **확인** | 에러 메시지에 현재 폴더 혹은 상위 폴더 중 일부가 깃 저장소가 아니라고 뜬 것을 확인함. 현재 디렉토리의 위치에 깃 저장소가 초기화되지 않은 상황. |
+| **해결/대안** | `cd` 명령어를 사용해 깃 저장소가 저장된 즉, git 초기화가 된 디렉토리로 이동해서 연동을 진행해야 함. <br> 연동을 하기 전에 항상 깃 저장소가 있는 디렉토리가 맞는지 ls -a 명령어로 .git 디렉토리를 잘 확인하는 습관을 가질것.|
+```Bash
+jeongyun.choi** ~ % git remote add origin https://github.com/Jeong-Yun-Choi/Pre-Codyssey-Setup.git
+fatal: (현재 폴더 또는 상위 폴더 중 일부가) 깃 저장소가 아닙니다: .git
+jeongyun.choi** ~ % 
+```
+<br>
+<br>
+
+**[2] 커스텀 이미지 빌드 실패 사례**
+
+| 항목 | 내용 |
+|---|---|
+| **문제** | 기존 Dockerfile 기반으로 커스텀 이미지를 제작하여 빌드하려고 했으나, 빌드에 실패함. |
+| **원인/가설** | 이미지를 빌드하려면 도커파일이 필요함. `transferring dockerfile:` <br> 도커파일을 불러오는 과정에서 중단됐으므로 도커파일을 불러오는 과정에서 문제가 생겼을 것으로 추정됨. |
+| **확인** | 에러메시지 `failed to read dockerfile: open Dockerfile: no such file or directory `를 확인함. <br> 도커파일을 찾지 못해서 생긴 문제임. |
+| **해결/대안** | 불러오고자 하는 도커파일이 현재 디렉토리에 있는지 확인하기 위해 미리 터미널 명령어 `ls`를 먼저 사용할 것. <br> 같은 컨텍스트(.)인 디렉토리 안에 있는 것을 확인하고 빌드하는 습관을 가질 것. |
+
+```Bash
+jeongyun.choi** src % docker build -t my-first-nginx .
+[+] Building 0.4s (1/1) FINISHED                                                                                                 docker:orbstack
+ => [internal] load build definition from Dockerfile                                                                                        0.1s
+ => => transferring dockerfile: 2B                                                                                                          0.0s
+ERROR: failed to build: failed to solve: failed to read dockerfile: open Dockerfile: no such file or directory
+```
